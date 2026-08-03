@@ -26,3 +26,14 @@ composer require \
 	symfonycasts/tailwind-bundle
 
 bin/console tailwind:init
+
+# Composants backend
+
+composer require \
+	symfony/orm-pack \
+	symfony/form \
+	symfony/validator \
+	martin-georgiev/postgresql-for-doctrine
+
+composer require --dev \
+	phpstan/phpstan-doctrine
