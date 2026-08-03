@@ -37,3 +37,7 @@ composer require \
 
 composer require --dev \
 	phpstan/phpstan-doctrine
+
+composer require \
+	symfony/security-bundle
+
