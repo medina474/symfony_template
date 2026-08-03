@@ -49,9 +49,13 @@ services:
 
 ###> doctrine/doctrine-bundle ###
   database:
-    image: postgres:${POSTGRES_VERSION:-16}-alpine
+    image: ${IMAGES_PREFIX:-}app-postgresql
+    build:
+      context: postgresql
     secrets:
       - database_password
+      - role_backup_password
+      - role_reporting_password
     environment:
       POSTGRES_INITDB_ARGS: --locale-provider=icu --icu-locale=fr-FR
       POSTGRES_DB: ${DATABASE_DB:-app}
@@ -66,6 +70,7 @@ services:
       - database_data:/var/lib/postgresql:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql:rw
+      - ./postgresql/initdb:/docker-entrypoint-initdb.d
 ###< doctrine/doctrine-bundle ###
 volumes:
   caddy_data:
@@ -81,3 +86,7 @@ volumes:
 secrets:
   database_password:
     file: ./secrets/database_password
+  role_backup_password:
+    file: ./secrets/role_backup_password
+  role_reporting_password:
+    file: ./secrets/role_reporting_password
