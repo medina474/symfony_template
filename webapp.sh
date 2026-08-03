@@ -9,3 +9,10 @@ composer require --dev \
 	symfony/debug-pack \
 	symfony/test-pack \
 	phpstan/phpstan-symfony
+
+# Composants frontend
+composer require \
+	symfony/twig-bundle \
+	symfony/asset \
+	symfony/asset-mapper \
+	symfony/ux-icons

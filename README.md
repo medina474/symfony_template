@@ -122,3 +122,26 @@ Il fonctionne en ligne de commande surtout en intégration continue.
 ```shell
 vendor/bin/phpstan analyse src
 ```
+
+## Composants frontend
+
+- ***symfony/twig-bundle*** : Intègre le moteur de templates [*Twig*](https://twig.symfony.com/). Il permet de générer les vues HTML et fournit de nombreuses fonctionnalités spécifiques à Symfony.
+
+- ***symfony/asset*** : Fournit des outils pour générer les URLs des ressources statiques (CSS, JavaScript, images). Il facilite également la gestion des versions d'assets pour le cache navigateur.
+
+- ***symfony/asset-mapper*** : Permet de gérer et exposer les fichiers CSS, JavaScript et autres ressources sans avoir besoin d'un bundler comme [*webpack*](https://webpack.js.org/). Il résout automatiquement les dépendances ES Modules et optimise la gestion des assets.
+
+* ***symfony/ux-icons*** : Permet d'utiliser facilement des bibliothèques d'icônes dans les templates Twig. Les icônes sont intégrées comme composants réutilisables et optimisées automatiquement.
+
+
+```shell
+composer require symfony/twig-bundle symfony/asset symfony/asset-mapper symfony/ux-icons
+```
+
+Pour trouver une icône à intégrer dans vos *assets*, visitez le site [UX Icons](https://ux.symfony.com/icons).
+
+Pour télécharger l'icône maison de la bibliothèque *Google Material Icon*.
+
+```shell
+bin/console ux:icon:import ic:baseline-home
+```
