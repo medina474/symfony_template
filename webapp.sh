@@ -41,3 +41,10 @@ composer require --dev \
 composer require \
 	symfony/security-bundle
 
+# Composants de communication
+
+composer require \
+	symfony/redis-messenger \
+	symfony/doctrine-messenger \
+	symfony/mercure-bundle \
+	symfony/mailer
