@@ -3,7 +3,7 @@
 A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
 with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) inside!
 
-Coding-agents ready: ships with a [Dev Container](https://containers.dev/) and a [one-page guide](docs/agents.md)
+Coding-agents ready: ships with a [Dev Container](https://containers.dev/) and a [one-page guide](agents.md)
 to run [OpenCode](https://opencode.ai), [Claude Code](https://claude.ai/claude-code), or any AI coding assistant,
 against a local or a remote model, with an optional network sandbox.
 
@@ -23,33 +23,33 @@ against a local or a remote model, with an optional network sandbox.
 - Just 1 service by default
 - Super-readable configuration
 - Blazing-fast performance thanks to [the worker mode of FrankenPHP](https://frankenphp.dev/docs/worker/)
-- [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
+- [Installation of extra Docker Compose services](extra-services.md) with Symfony Flex
 - Automatic HTTPS (in dev and prod)
 - HTTP/3 and [Early Hints](https://symfony.com/blog/new-in-symfony-6-3-early-hints) support
 - Real-time messaging thanks to a built-in [Mercure hub](https://symfony.com/doc/current/mercure.html)
 - [Vulcain](https://vulcain.rocks) support
-- Native [XDebug](docs/xdebug.md) integration
+- Native [XDebug](xdebug.md) integration
 - [Hot Reloading](https://frankenphp.dev/docs/hot-reload/)
 - [Dev Container](https://containers.dev/) support
-- [AI coding agents](docs/agents.md) with an optional network sandbox
+- [AI coding agents](agents.md) with an optional network sandbox
 - Rootless, slim production image
 
 **Enjoy!**
 
 ## Docs
 
-1. [Options available](docs/options.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [TLS Certificates](docs/tls.md)
-7. [Using MySQL instead of PostgreSQL](docs/mysql.md)
-8. [Using Alpine Linux instead of Debian](docs/alpine.md)
-9. [Using a Makefile](docs/makefile.md)
-10. [Updating the template](docs/updating.md)
-11. [Troubleshooting](docs/troubleshooting.md)
-12. [Using AI coding agents](docs/agents.md)
+1. [Options available](options.md)
+2. [Using Symfony Docker with an existing project](existing-project.md)
+3. [Support for extra services](extra-services.md)
+4. [Deploying in production](production.md)
+5. [Debugging with Xdebug](xdebug.md)
+6. [TLS Certificates](tls.md)
+7. [Using MySQL instead of PostgreSQL](mysql.md)
+8. [Using Alpine Linux instead of Debian](alpine.md)
+9. [Using a Makefile](makefile.md)
+10. [Updating the template](updating.md)
+11. [Troubleshooting](troubleshooting.md)
+12. [Using AI coding agents](agents.md)
 
 ## License
 
