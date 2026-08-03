@@ -187,3 +187,14 @@ workers:
 * ***symfony/form*** : Fournit un système complet de création, affichage et traitement de formulaires. Il gère automatiquement le mapping entre les données soumises et les objets métier.
 
 * ***symfony/validator*** : Permet de valider les données à l'aide de règles déclaratives. Il est couramment utilisé pour vérifier les entités, les *DTO* et les données de formulaires.
+
+## Construire l'image
+
+```shell
+docker compose build --pull --no-cache
+```
+### Passer en production
+
+```shell
+docker compose -f compose.yaml -f compose.prod.yaml build --pull --no-cache
+```
