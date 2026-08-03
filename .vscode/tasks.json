@@ -1,0 +1,74 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Create database for test environment",
+            "type": "shell",
+            "command": "bin/console -e test doctrine:database:create",
+            "problemMatcher": []
+        },
+        {
+            "label": "Database / Entity difference",
+            "type": "shell",
+            "command": "bin/console doctrine:migrations:diff",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run migrations on test environment",
+            "type": "shell",
+            "command": "bin/console -e test doctrine:migrations:migrate --no-interaction",
+            "problemMatcher": []
+        },
+        {
+            "label": "PHPUnit",
+            "type": "shell",
+            "command": "bin/phpunit",
+            "problemMatcher": []
+        },
+        {
+            "label": "PHPStan",
+            "type": "shell",
+            "command": "vendor/bin/phpstan --memory-limit=256M",
+            "problemMatcher": [
+                "$php"
+            ]
+        },
+        {
+            "label": "Tailwind build",
+            "type": "shell",
+            "command": "bin/console tailwind:build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Debug router",
+            "type": "shell",
+            "command": "bin/console debug:router",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clear cache",
+            "type": "shell",
+            "command": "bin/console cache:clear",
+            "problemMatcher": []
+        },
+        {
+            "label": "Messenger consume",
+            "type": "shell",
+            "command": "bin/console messenger:consume async -vv",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Create database password",
+            "type": "shell",
+            "command": "openssl rand -base64 32 > secrets/database_password",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never"
+            }
+        }
+    ]
+}
