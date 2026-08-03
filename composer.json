@@ -17,9 +17,12 @@
         "symfony/framework-bundle": "8.1.*",
         "symfony/monolog-bundle": "^4.0",
         "symfony/runtime": "8.1.*",
+        "symfony/stimulus-bundle": "*",
         "symfony/twig-bundle": "8.1.*",
         "symfony/ux-icons": "^3.4",
-        "symfony/yaml": "8.1.*"
+        "symfony/ux-turbo": "*",
+        "symfony/yaml": "8.1.*",
+        "symfonycasts/tailwind-bundle": "*"
     },
     "config": {
         "allow-plugins": {

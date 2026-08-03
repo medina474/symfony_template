@@ -145,3 +145,23 @@ Pour télécharger l'icône maison de la bibliothèque *Google Material Icon*.
 ```shell
 bin/console ux:icon:import ic:baseline-home
 ```
+
+### Hotwire
+
+* ***symfony/stimulus-bundle*** intègre la bibliothèque JavaScript [*Hotwire Stimulus*](https://stimulus.hotwired.dev/). Elle ajoute du comportement interactif en reliant des controllers à des éléments DOM de la page HTML via des attributs `data-*`, sans imposer une architecture complète SPA comme *React* ou *Svelte*.
+
+* ***symfony/ux-turbo*** intègre la bibliothèque JavaScript [*Hotwire Turbo*](https://turbo.hotwired.dev/). Elle accélère la navigation en interceptant les requêtes HTTP pour mettre à jour uniquement des fragments HTML au lieu de recharger toute la page, tout en laissant la logique côté serveur.
+
+```shell
+composer require symfony/stimulus-bundle symfony/ux-turbo
+```
+
+### Tailwind CSS
+
+* ***symfonycasts/tailwind-bundle*** : Intègre la bibliothèque CSS [*Tailwind CSS*](https://tailwindcss.com/) avec une configuration simplifiée. Il permet de compiler automatiquement les styles Tailwind durant le développement et le déploiement.
+
+Télécharger le client *tailwind* et initialiser la configuration.
+
+```shell
+php bin/console tailwind:init
+```

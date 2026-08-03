@@ -16,3 +16,13 @@ composer require \
 	symfony/asset \
 	symfony/asset-mapper \
 	symfony/ux-icons
+
+bin/console make:controller HomeController
+
+# Interactivité
+composer require \
+	symfony/stimulus-bundle \
+	symfony/ux-turbo \
+	symfonycasts/tailwind-bundle
+
+bin/console tailwind:init
