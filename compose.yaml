@@ -2,6 +2,8 @@
 services:
   php:
     restart: unless-stopped
+    depends_on:
+      - redis
     environment:
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
       DEFAULT_URI: https://${SERVER_NAME:-localhost}:${HTTPS_PORT:-443}
@@ -34,8 +36,15 @@ services:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
 
+  redis:
+    image: redis:8.8
+    ulimits:
+      memlock: -1
+    volumes:
+      - redis_data:/data
 volumes:
   caddy_data:
   caddy_config:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
+  redis_data:
