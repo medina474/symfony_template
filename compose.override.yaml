@@ -28,9 +28,14 @@ services:
     tty: true
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
+  redis:
+    restart: no
+    ports:
+      - "6379:6379"
 
 ###> doctrine/doctrine-bundle ###
   database:
+    restart: no
     ports:
-      - "5432"
+      - "5432:5432"
 ###< doctrine/doctrine-bundle ###
