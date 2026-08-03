@@ -16,7 +16,8 @@
         "vscode": {
             "extensions": [
                 "bmewburn.vscode-intelephense-client",
-                "xdebug.php-debug"
+                "xdebug.php-debug",
+                "editorconfig.editorconfig"
             ],
             "settings": {
                 "launch": {

@@ -11,12 +11,21 @@ end_of_line = lf
 indent_style = space
 indent_size = 4
 
+[**.css]
+indent_size = 2
+
 [**/{Dockerfile,Caddyfile,*.sh}]
 indent_style = tab
 
-[{compose.*yaml,.devcontainer/compose.*yaml,.github/**/*.yaml}]
+[**.yaml]
 indent_size = 2
 
 [**.md]
 indent_size = unset
 indent_style = unset
+
+[**.css]
+indent_size = 2
+
+[secrets/**]
+insert_final_newline = false
