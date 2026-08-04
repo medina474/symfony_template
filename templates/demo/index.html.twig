@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démo{% endblock %}
+
+{% block body %}
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+    Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
+    Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
+    Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue.
+    Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede.
+    Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales.
+    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.
+    Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
+</p>
+<ul>
+  <li><a href='{{ path(name = 'demo_form') }}' data-turbo-prefetch='false'>Les formulaires<a></li>
+  <li><a href='{{ path(name = 'demo_async') }}' data-turbo-prefetch='false'>Async<a></li>
+  <li><form method="post"
+        action="{{ path('demo_session') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_session') }}">
+        <button class="btn">
+            Session
+        </button>
+    </form>
+  </li>
+  <li><form method="post"
+        action="{{ path('demo_messenger') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_messenger') }}">
+        <button class="btn">
+            Symfony Messenger
+        </button>
+    </form>
+  </li>
+  <li>
+    <form method="post"
+        action="{{ path('demo_logger') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_logger') }}">
+        <button class="btn">
+            Symfony Logger
+        </button>
+    </form>
+  </li>
+  <li>
+    <form method="post"
+        action="{{ path('demo_mailer') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_mailer') }}">
+        <button class="btn">
+            Symfony Mailer
+        </button>
+    </form>
+  </li>
+</ul>
+
+<dialog id="my-dialog" class="m-auto">
+  <p>This dialog was opened using an invoker command.</p>
+  <button commandfor="my-dialog" command="close">Close</button>
+</dialog>
+
+<button type="button" command="show-modal" commandfor="my-dialog" class="btn btn-primary">Open modal</button>
+
+Boite de dialogue
+
+  <form method="post" action="{{ path('demo_dialog') }}">
+    <button class="btn btn-primary">Open modal</button>
+  </form>
+
+144 x 144
+<h3>Notifier</h3>
+  <form method="post" action="{{ path('demo_notifier') }}">
+    <button class="btn btn-primary">Notification</button>
+  </form>
+
+<h3>Boutons</h3>
+
+<button class="btn">Bouton</button>
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-secondary">Secondary</button>
+<button class="btn btn-success">Success</button>
+<button class="btn btn-warning">Warning</button>
+<button class="btn btn-danger">Danger</button>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+mail.localhost {
+	tls internal
+	reverse_proxy mailer:8025
+}
