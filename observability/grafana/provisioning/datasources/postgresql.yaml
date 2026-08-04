@@ -7,10 +7,10 @@ datasources:
 
     url: database:5432
 
-    user: grafana
+    user: reporting
 
     secureJsonData:
-      password: $__file{/run/secrets/role_grafana_password}
+      password: $__file{/run/secrets/role_reporting_password}
 
     jsonData:
       database: app

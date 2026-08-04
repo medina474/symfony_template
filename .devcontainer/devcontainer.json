@@ -3,6 +3,7 @@
     "dockerComposeFile": [
         "../compose.yaml",
         "../compose.override.yaml",
+        "../observability/compose.yaml",
         "compose.devcontainer.yaml"
     ],
     "service": "php",
