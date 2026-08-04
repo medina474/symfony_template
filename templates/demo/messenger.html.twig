@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony Messenger{% endblock %}
+
+{% block body %}
+<p>Message envoyé</p>
+bin/console messenger:consume async -vv
+{% endblock %}
