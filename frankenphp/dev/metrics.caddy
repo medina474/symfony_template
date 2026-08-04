@@ -1,0 +1,4 @@
+metrics.localhost {
+	tls internal
+	reverse_proxy victoriametrics:8428
+}

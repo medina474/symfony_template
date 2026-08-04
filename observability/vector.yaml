@@ -1,0 +1,110 @@
+sources:
+  docker:
+    type: docker_logs
+    exclude_containers: ["victorialogs", "vector"]
+
+transforms:
+  msg_parser:
+    type: remap
+    inputs: [docker]
+    source: |
+      raw = to_string(.message) ?? ""
+      parsed, err = parse_json(raw)
+
+      if err == null {
+        . = merge!(., parsed)
+
+        logger_name = to_string(.logger) ?? ""
+
+        if starts_with(logger_name, "http.log.access") {
+          .service = "http_access"
+          .http_method = .request.method
+          .http_uri = .request.uri
+          .http_host = .request.host
+          .http_proto = .request.proto
+          .client_ip = .request.client_ip
+          .status = .status
+          .duration_ms = (to_float(.duration) ?? 0.0) * 1000
+          .response_size = .size
+
+          ua = .request.headers."User-Agent"
+          .user_agent = to_string(ua[0]) ?? "unknown"
+          
+          al = .request.headers."Accept-Language"
+          .accept_language = to_string(al[0]) ?? "unknown"
+
+          # bruit qu'on ne veut pas indexer
+          del(.request.headers)
+          del(.request.tls)
+          del(.resp_headers)
+
+          # reclassification du niveau selon le code HTTP
+          .level_name = .level
+          .level = to_int(.status) ?? 0
+          if .level >= 500 {
+            .level_name = "FATAL"
+          } else if .level >= 400 {
+            .level_name = "ERROR"
+          }
+          # sinon on garde le .level d'origine renvoyé par Caddy (INFO)
+          
+          # message lisible pour _msg, plutôt que le JSON brut
+          method_s = to_string(.http_method) ?? "?"
+          uri_s = to_string(.http_uri) ?? "?"
+          status_s = to_string(.status) ?? "?"
+          duration_s = to_string(round(.duration_ms, 1))
+
+          .message = method_s + " " + uri_s + " -> " + status_s + " (" + duration_s + "ms)"
+        } else if exists(.channel) || exists(.level_name) {
+          .service = "application"
+          if exists(.context) {
+            . = merge!(., .context)
+          }
+        } else {
+          .service = "frankenphp"
+        }
+      } else {
+        .message = raw
+        if match(.message, r'PHP (Warning|Fatal|Notice|Parse error)') {
+          .service = "php_error"
+        } else {
+          .service = "unknown"
+        }
+      }
+
+      del(.label."dev.frankenphp.base.fingerprint")
+
+      del(.label."devcontainer.config_file")
+      del(.label."devcontainer.local_folder")
+      del(.label."devcontainer.metadata")
+      
+      del(.label."com.docker.compose.config-hash")
+      del(.label."com.docker.compose.depends_on")
+      del(.label."com.docker.compose.container-number")
+      del(.label."com.docker.compose.image")
+      del(.label."com.docker.compose.oneoff")
+      del(.label."com.docker.compose.project")
+      del(.label."com.docker.compose.project.config_files")
+      del(.label."com.docker.compose.project.working_dir")
+      del(.label."com.docker.compose.version")
+
+      del(.label."org.opencontainers.image.description")
+      del(.label."org.opencontainers.image.licenses")
+      del(.label."org.opencontainers.image.revision")
+      del(.label."org.opencontainers.image.title")
+      del(.label."org.opencontainers.image.url")
+      del(.label."org.opencontainers.image.vendor")
+      del(.label."org.opencontainers.image.version")
+
+sinks:
+  victorialogs:
+    type: elasticsearch
+    inputs:
+      - msg_parser
+    endpoints:
+      - http://victorialogs:9428/insert/elasticsearch
+    mode: bulk
+    compression: gzip
+    query:
+      _stream_fields: service
+      _msg_field: message

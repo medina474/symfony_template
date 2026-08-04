@@ -75,6 +75,14 @@ services:
       - ./postgresql/initdb:/docker-entrypoint-initdb.d
 ###< doctrine/doctrine-bundle ###
 
+  k6:
+    image: grafana/k6:latest
+    profiles:
+      - bench
+    volumes:
+      - ./performance/k6:/scripts:ro
+    working_dir: /scripts
+
 volumes:
   caddy_data:
   caddy_config:
@@ -92,3 +100,5 @@ secrets:
     file: ./secrets/role_backup_password
   role_reporting_password:
     file: ./secrets/role_reporting_password
+  admin_password:
+    file: ./secrets/admin_password

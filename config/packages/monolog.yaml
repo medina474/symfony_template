@@ -7,9 +7,11 @@ when@dev:
         handlers:
             main:
                 type: stream
-                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                #path: "%kernel.logs_dir%/%kernel.environment%.log"
+                path: php://stderr
                 level: debug
                 channels: ["!event"]
+                formatter: monolog.formatter.json
             console:
                 type: console
                 process_psr_3_messages: false
