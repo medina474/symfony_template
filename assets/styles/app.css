@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
-body {
-    background-color: skyblue;
+@theme {
+  --color-primary: #0ca678;
+  /* https://www.tints.dev/palette/v1:cHJpbWFyeXwwY2E2Nzh8NDAwfHB8MHwwfDB8MTAwfGE */
+  --color-primary-50: oklch(0.948 0.078 164.24);
+  --color-primary-100: oklch(0.893 0.173 164.49);
+  --color-primary-200: oklch(0.807 0.168 164.71);
+  --color-primary-300: oklch(0.722 0.150 164.76);
+  --color-primary-400: oklch(0.643 0.134 164.69); /* base */
+  --color-primary-500: oklch(0.556 0.116 164.30);
+  --color-primary-600: oklch(0.471 0.098 164.81);
+  --color-primary-700: oklch(0.386 0.080 164.91);
+  --color-primary-800: oklch(0.302 0.063 164.61);
+  --color-primary-900: oklch(0.220 0.046 164.99);
+  --color-primary-950: oklch(0.173 0.037 164.84);
+}
+
+@layer components {
+  .turbo-progress-bar {
+	  @apply
+        bg-primary!;
+    }
 }
