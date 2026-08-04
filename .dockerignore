@@ -34,3 +34,4 @@ vendor/
 .env.test
 .vscode/
 postgresql/
+secrets/
