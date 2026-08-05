@@ -28,7 +28,8 @@ RUN <<-EOF
 		intl \
 		opcache \
 		zip \
-		redis
+		redis \
+		xsl
 	rm -rf /var/lib/apt/lists/*
 EOF
 
