@@ -14,11 +14,65 @@
   --color-primary-800: oklch(0.302 0.063 164.61);
   --color-primary-900: oklch(0.220 0.046 164.99);
   --color-primary-950: oklch(0.173 0.037 164.84);
+
+  --btn-padding-x: 1rem;
+  --btn-padding-y: 0.5625rem; /* 9 / 16 */
+  --btn-font-size: 0.875rem;
+  --btn-line-height: 1.0rem;
+  --btn-border-width: 1px;
+}
+
+@layer base {
+  dialog {
+    @apply 
+    m-auto
+    shadow-lg;
+  }
 }
 
 @layer components {
   .turbo-progress-bar {
 	  @apply
         bg-primary!;
+    }
+
+  .btn {
+      @apply
+        inline-flex
+        items-center
+        justify-center
+        rounded-sm
+        text-stone-700
+        text-sm/1
+        font-medium
+        px-3
+        py-1.5
+        border
+        border-stone-300
+        hover:border-stone-500
+        cursor-pointer
+        shadow-sm
+        active:shadow-none
+        focus-visible:outline-2 focus-visible:outline-offset-2
+        disabled:bg-gray-400
+        select-none
+        w-full sm:w-auto;
+      min-width: calc(var(--btn-line-height) * 2 + var(--btn-padding-y) * 2 + var(--btn-border-width) * 2);
+      min-height: calc(var(--btn-line-height) * 1 + var(--btn-padding-y) * 2 + var(--btn-border-width) * 2);
+      transition: color .15s ease-in-out, background-color .25s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .btn-primary {
+      @apply bg-primary-400 text-white
+      hover:bg-primary-500
+      active:bg-primary-600
+      focus-visible:outline-primary-400
+    }
+
+    .btn-danger {
+      @apply bg-red-700 text-white
+      hover:bg-red-800
+      active:bg-red-900
+      focus-visible:outline-red-700
     }
 }
