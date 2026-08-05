@@ -1,0 +1,193 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Matériel{% endblock %}
+
+{% block stylesheets %}
+<style>
+	body { 
+		margin: 0 6px 32px; 
+		font-family:sans-serif 
+	}
+	.materiel { 
+		padding: 1rem; 
+		border: 1px solid #c7254e;
+		background-color: #f9f2f4;
+		color:#c7254e;
+	}
+	.materiel.support {
+		border-color: #25c63b;
+		color: #25c63b;
+		background-color: #f2f9f3;
+	}
+	.materiel .support {
+		display: none;
+	}
+	.materiel.support .support {
+		display: block;
+	}
+	.materiel.support .non_support {
+		display: none;
+	}
+	
+	a.button {
+		color: #fff;
+		background-color: #5cb85c;
+		font-size:14px;
+		display: block;
+		float: right;
+		padding: 0.5em 1em;
+		font-weight: 400;
+		line-height: 1.42857143;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: middle;
+		touch-action: manipulation;
+		cursor: pointer;
+		user-select: none;
+		background-image: none;
+		border: 1px solid #4cae4c;
+		border-radius: 0.33rem;
+		text-decoration: none;
+	}
+	
+	a.button:hover {
+		background-color: #449d44;
+		border-color: #398439;
+	}
+</style>
+{% endblock %}
+
+{% block body %}
+    <h1>Matériel</h1>
+    <p>Ce n'est pas parce que le navigateur implémente les interfaces de programmation (API) que le matériel est en capacité de fournir les informations.</p>
+    
+	<div class="materiel" id="geolocation">
+		<div class="support">
+			<a class="button" href='geolocation.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Géolocalisation</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("geolocation" in navigator) = <script>document.write("geolocation" in navigator);</script></code></pre>
+	<script>
+	if ("geolocation" in navigator) 
+		document.getElementById("geolocation").className += " support";
+	</script>
+
+    <div class="materiel" id="vibrate">
+		<div class="support">
+			<a class="button" href='vibrate.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Vibration</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("vibrate" in navigator) = <script>document.write("vibrate" in navigator);</script></code></pre>
+    <script>
+	if ("vibrate" in navigator) 
+		document.getElementById("vibrate").className += " support";
+	</script>
+
+    <div class="materiel" id="ambient">
+		<div class="support">
+			<a class="button" href='ambient.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Capteur de lumière ambiante</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("ondevicelight" in window) = <script>document.write("ondevicelight" in window);</script></code></pre>
+    <script>
+	if ("ondevicelight" in window) 
+		document.getElementById("ambient").className += " support";
+	</script>
+
+    <div class="materiel" id="proximity">
+		<div class="support">
+			<a class="button" href='proximity.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Proximité</strong><br> 
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("ondeviceproximity" in window) = <script>document.write("ondeviceproximity" in window);</script></code></pre>
+    <script>
+	if ("ondeviceproximity" in window) 
+		document.getElementById("proximity").className += " support";
+	</script>
+
+	<div class="materiel" id="motion">
+		<div class="support">
+			<a class="button" href='motion.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Mouvements</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("ondevicemotion" in window) = <script>document.write("ondevicemotion" in window);</script></code></pre>
+	<script>
+	if ("ondevicemotion" in window) 
+		document.getElementById("motion").className += " support";
+	</script>
+	
+    <div class="materiel" id="orientation"> 
+		<div class="support">
+			<a class="button" href='orientation.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Orientation</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("ondeviceorientation" in window) = <script>document.write("ondeviceorientation" in window);</script>
+("orientation" in screen) = <script>document.write("orientation" in screen);</script>
+    </code></pre>
+	<script>
+	if ("ondeviceorientation" in window || "orientation" in screen) 
+		document.getElementById("orientation").className += " support";
+	</script>
+	
+	<div class="materiel" id="battery">
+		<div class="support">
+			<a class="button" href='battery.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Batterie</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("battery" in navigator) = <script>document.write("battery" in navigator);</script></code></pre>
+    <script>
+	if ("battery" in navigator) 
+		document.getElementById("battery").className += " support";
+	</script>
+	
+    <div class="materiel" id="speech">
+		<div class="support">
+			<a class="button" href='speech.html'>Tester</a>
+		</div>
+		<div>
+			<strong>Synthèse vocale</strong><br>
+			<span class="support">API présente</span>
+			<span class="non_support">API absente</span>
+		</div>
+	</div>
+    <pre><code class="javascript">("speechSynthesis" in window) = <script>document.write("speechSynthesis" in window);</script></code></pre>
+	<script>
+	if ("speechSynthesis" in window) 
+		document.getElementById("speech").className += " support";
+	</script>
+{% endblock %}

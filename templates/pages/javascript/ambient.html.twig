@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ambient Light{% endblock %}
+
+{% block body %}
+<h2>Ambient Light API</h2>
+
+<p>Les capteur ALS (Ambient Light Sensor) mesurent la luminosité ambiante. L'appareil peut ainsi ajuster la luminosité et/ou le contraste des éléments affichés sur l'écran. Cela a deux avantages : améliorer l'expérience utilisateur en adaptant la visibilité à l'environnement (plein soleil, obscurité) et économiser l'énergie en baissant la luminosité de l'écran quand cela est possible.</p>
+
+<p>L'information de luminosité peut être fournie par un capteur spécifique qui délivrera un mesure précise ou directement par la caméra.</p>
+
+<h3>Device Light</h3>
+
+<p>Retourne la luminosité ambiante en lux</p>
+
+<pre><code class="javascript">window.addEventListener('devicelight', function(devicelight) {
+    devicelight.value = <span id='devicelight.value'></span>;
+    devicelight.min = <span id='devicelight.min'></span>;
+    devicelight.max = <span id='devicelight.max'></span>;
+});
+</code></pre>
+
+<h3>Light Level</h3>
+
+<p>Indique seulement 3 niveaux : normal, bright, ou dim</p>
+
+<pre><code class="javascript">window.addEventListener('lightlevel', function(lightlevel) {
+    lightlevel.value = <span id='lightlevel.value'></span>;
+});
+</code></pre>
+
+<script language='javascript'>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    if ('ondevicelight' in window) {
+	    window.addEventListener('devicelight', function(devicelight) {
+            document.getElementById('devicelight.value').innerHTML = devicelight.value;
+            document.getElementById('devicelight.min').innerHTML = devicelight.min;
+            document.getElementById('devicelight.max').innerHTML = devicelight.max;
+        }, false);
+    } else {
+        //document.write("ondevicelight Non supporté");   
+    }
+    
+    if ('onlightlevel' in window) {
+	    window.addEventListener('lightlevel', function(lightlevel) {
+            document.getElementById('lightlevel.value').innerHTML = lightlevel.value;
+        }, false);
+    } else {
+        //document.write("onlightlevel Non supporté");   
+    }
+});
+</script>
+
+{% endblock %}

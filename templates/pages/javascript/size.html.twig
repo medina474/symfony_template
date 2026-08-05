@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Size{% endblock %}
+
+{% block body %}
+
+<p>L'origine des coordonnées de l'écran est le coin supérieur gauche. <br>
+L'axe des ordonnées est orienté vers le bas et l'axe des abscisses vers la droite.</p>
+
+<h3>Taille de l'écran</h3>
+
+<pre><code class="javascript">window.screen.top = <script>document.write(window.screen.top);</script></code></pre>
+<p>Distance en pixels de l'origine de cet écran depuis le haut de l'écran étendu. Propriété à tester dans une configuration multi-écran, sinon la valeur est égale à 0.</p>
+
+<pre><code class="javascript">window.screen.left = <script>document.write(window.screen.left);</script></code></pre>
+<p>Distance en pixels de l'origine de cet écran depuis le côté gauche de l'écran étendu. Propriété à tester dans une configuration multi-écran, sinon la valeur est égale à 0.</p>
+
+<pre><code class="javascript">window.screen.height = <script>document.write(window.screen.height);</script></code></pre>	
+<p>Hauteur de l'écran courant en pixels.</p>
+
+<pre><code class="javascript">window.screen.width = <script>document.write(window.screen.width);</script></code></pre>	
+<p>Largeur de l'écran courant en pixels.</p>
+
+
+<h3>Taille disponible de l'écran</h3>
+
+<p>C'est la taille de l'éran moins les éléments fixes de l'écran comme la barre de menu sous OS X et la barre des tâches sous Windows.<br>
+Essayez de déplacer la barre des tâches de Windows à gauche ou en haut de l'écran et observer les valeurs.<br>
+Essayer de passer le navigateur en plein écran et observer les valeurs.</p>
+
+<pre><code class="javascript">window.screen.availTop = <script>document.write(window.screen.availTop);</script></code></pre>
+<p>Ordonnée du premier pixel disponible qui n'est pas occupé par un élément d'interface permanent.</p>
+    
+<pre><code class="javascript">window.screen.availLeft = <script>document.write(window.screen.availLeft);</script></code></pre>
+<p>Abscisse du premier pixel disponible qui n'est pas occupé par un élément d'interface permanent.
+
+<pre><code class="javascript">window.screen.availHeight = <script>document.write(window.screen.availHeight);</script></code></pre>
+<p>Hauteur disponible de l'écran courant en pixels.</p>
+
+<pre><code class="javascript">window.screen.availWidth = <script>document.write(window.screen.availWidth);</script></code></pre>
+<p>Largeur disponible de l'écran courant en pixels.</p>
+
+<h3>Profondeur de l'écran</h3>
+
+<pre><code class="javascript">window.screen.pixelDepth = <script>document.write(window.screen.pixelDepth)</script> bits</code></pre>
+<p>La quantification des pixels de l'écran, soit le nombre de bits par pixels pour représenter en autre les nuances de gris ou de couleurs.</p>
+
+<pre><code class="javascript">window.screen.colorDepth = <script>document.write(window.screen.colorDepth)</script> bits</code></pre>
+<p>La quantification des pixels de l'écran pour représenter les nuances de couleurs. A tester sur des écrans noir & blanc comme des liseuses.</p>
+
+
+<pre><code class="javascript">window.screen.orientation.type = &quot;<script>document.write(window.screen.orientation.type)</script>&quot;
+window.screen.orientation.angle = <script>document.write(window.screen.orientation.angle)</script>&deg;
+</code></pre>	
+<p>Orientation de l'écran : paysage ou portrait.</p>
+
+<h3>Fenêtre</h3>
+
+<pre><code class="javascript">window.outerWidth = <script>document.write(window.outerWidth);</script> </code></pre>
+<p>Largeur de fenêtre du navigateur</p> 
+
+<pre><code class="javascript">window.outerHeight = <script>document.write(window.outerHeight);</script> </code></pre>
+<p>Hauteur de la fenêtre du navigateur</p>
+
+<pre><code class="javascript">window.innerWidth = <script>document.write(window.innerWidth);</script> </code></pre>
+<p>Largeur de fenêtre du navigateur hors bord et barre de défilement</p> 
+
+<pre><code class="javascript">window.innerHeight = <script>document.write(window.innerHeight);</script> </code></pre>
+<p>Hauteur de fenêtre du navigateur hors bord, onglets, menus, barre d'adresse et barre de défilement</p>
+
+<pre><code class="javascript">window.pageXOffset = <span id="pageXOffset"><script>document.write(window.pageXOffset);</script></span></code></pre>	
+<p>Défilement de la page en abscisse (<a href="#" onclick="document.getElementById('pageXOffset').innerHTML = window.pageXOffset; return false;">actualiser</a>)</p>
+
+<pre><code class="javascript">window.pageYOffset = <span id="pageYOffset"><script id="update">document.write(window.pageYOffset);</script></span></code></pre>
+<p>Défilement de la page en ordonnée (<a href="#" onclick="document.getElementById('pageYOffset').innerHTML = window.pageYOffset; return false;">actualiser</a>)</p>
+	
+
+    
+    
+<pre><code class="javascript">document.documentElement.clientWidth = <script>document.write(document.documentElement.clientWidth);</script></code></pre>
+<p></p> 
+
+<pre><code class="javascript">document.documentElement.clientHeight = <script>document.write(document.documentElement.clientHeight);</script></code></pre>
+<p></p>
+	
+<pre><code class="javascript">document.body.scrollTop = <script>document.write(document.body.scrollTop);</script></code></pre>
+<p>document.body.scrollTop = 
+
+<pre><code class="javascript">document.body.scrollLeft = <script>document.write(document.body.scrollLeft);</script></code></pre>
+<p>document.body.scrollLeft =     
+	
+	<p>
+Events handler
+
+Screen.onorientationchange
+    A handler for the orientationchange events.
+
+Methods
+
+Screen.lockOrientation
+    Lock the screen orientation (only works in fullscreen or for installed apps)
+
+    Screen.unlockOrientation
+    Unlock the screen orientation (only works in fullscreen or for installed apps)
+
+Methods inherit from EventTarget
+
+EventTarget.addEventListener()
+    Register an event handler of a specific event type on the EventTarget.
+EventTarget.removeEventListener()
+    Removes an event listener from the EventTarget.
+EventTarget.dispatchEvent()
+    Dispatch an event to this EventTarget.
+
+Example
+
+if (screen.pixelDepth < 8) {
+  // use low-color version of page
+} else { 
+  // use regular, colorful page
+}
+
+Specification
+
+{% endblock %}

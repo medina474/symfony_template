@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orientation{% endblock %}
+
+{% block stylesheets %}
+<style>
+@media screen and (orientation:portrait) {
+    #portrait { visibility: visible; }
+    #landscape { visibility: hidden; }
+}
+
+@media screen and (orientation:landscape) {
+    #portrait { visibility: hidden; }
+    #landscape { visibility: visible; }
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<h2>Device Orientation API</h2>
+
+<pre><code class="javascript">window.addEventListener('deviceorientation', function(event) {
+    event.alpha = <span id='alpha'></span>;
+    event.beta = <span id='beta'></span>;
+    event.gamma = <span id='gamma'></span>;
+}, false);
+</code></pre>
+
+<h2>Screen Orientation API</h2>
+
+<pre><code class="javascript">screen.orientation.addEventListener('change', function() {
+    screen.orientation.type = "<span id='orientation_type'></span>";
+    screen.orientation.angle = <span id='orientation_angle'></span>;
+}, false);
+</code></pre>
+
+<h2>Window Orientation</h2>
+
+<pre><code class="javascript">window.addEventListener("orientationchange", function() {
+    screen.orientation.angle = <span id='window'></span>;
+}, false);
+</code></pre>
+
+<h2>CSS Mediaqueries</h2>
+
+<pre><code class="css">
+@media screen and (orientation:portrait) {
+    <span id="portrait">/* styles spécifiques à l'orientation portrait */</span>
+}
+
+@media screen and (orientation:landscape) {
+    <span id="landscape">/* styles spécifiques à l'orientation paysage */</span>
+}
+</code></pre>
+
+<script>var mql = window.matchMedia("(orientation: portrait)");</script>
+<pre><code class="javascript">var mediaQueryList = window.matchMedia("(orientation: portrait)");
+
+mediaQueryList.addListener(function(mql) { 
+    mql.matches = <span id="matchMedia"><script>document.write(mediaQueryList.matches);</script></span>; 
+});
+</code></pre>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+
+    window.addEventListener('deviceorientation', function(event) {
+        document.getElementById("alpha").innerHTML = Math.round(event.alpha);
+        document.getElementById("beta").innerHTML = Math.round(event.beta);
+        document.getElementById("gamma").innerHTML = Math.round(event.gamma);
+    }, false);
+    
+    if ("orientation" in screen) {
+        document.getElementById("orientation_type").innerHTML = screen.orientation.type;
+        document.getElementById("orientation_angle").innerHTML = screen.orientation.angle;
+    
+        screen.orientation.change = function() {
+            document.getElementById("orientation_type").innerHTML = screen.orientation.type;
+            document.getElementById("orientation_angle").innerHTML = screen.orientation.angle;
+        }
+    }
+    
+    window.addEventListener("orientationchange", function() {
+        document.getElementById('window').innerHTML = screen.orientation.angle;
+    }, false);
+    
+    mediaQueryList.addListener(function(mql) { document.getElementById("matchMedia").innerHTML = mql.matches; });
+    
+    screen.lockOrientation('landscape');
+});
+</script>
+{% endblock %}

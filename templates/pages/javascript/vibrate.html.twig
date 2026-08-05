@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vibration{% endblock %}
+
+{% block body %}
+    <h1>API Vibration</h1>
+    
+    <p>Vibration de 125 ms.</p>
+    <pre><code class="javascript">window.navigator.vibrate(125);</code></pre>
+    <button onclick="window.navigator.vibrate(125)">Tester</button> 
+    
+    <p>Vibration de 125 ms, les valeurs suivantes ne sont pas prises en compte.</p>
+    <pre><code class="javascript">window.navigator.vibrate(125, 500, 125, 500, 125, 500, 125, 500, 125);</code></pre>
+    <button onclick="window.navigator.vibrate(125, 500, 125, 500, 125, 500, 125, 500, 125)">Tester</button> 
+    
+    <p>Vibration suivant un schéma de 125 ms de vibration suivi d'un repose de 500 ms et d'une nouvelle vibration de 125 ms.</p>
+    <pre><code class="javascript">window.navigator.vibrate([125, 500, 125]);</code></pre>
+    <button onclick="window.navigator.vibrate([125, 500, 125])">Tester</button> 
+    
+    <p>Vibration suivant un schéma de 125 ms de vibration suivi de 500 ms de repos, 125 ms de vibration, repos d'une seconde et vibration de deux secondes.</p>
+    <pre><code class="javascript">window.navigator.vibrate([125, 500, 125, 1000, 2000]);</code></pre>
+    <button onclick="window.navigator.vibrate([125, 500, 125, 1000, 2000])">Tester</button> 
+       
+    <p>Arrêt de la vibration en cours.</p>
+    <pre><code class="javascript">window.navigator.vibrate(0);</code></pre>
+    <button onclick="window.navigator.vibrate(30000)">Démarrer</button> 
+    <button onclick="window.navigator.vibrate(0)">Arrêter</button> 
+        
+{% endblock %}

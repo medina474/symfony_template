@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Média{% endblock %}
+
+{% block body %}
+
+<h2>Media</h2>
+
+<p><video id="MediaStreamVideo" width="400" height="300" style="max-width:100%;background:#111;border:1px solid #666;-webkit-filter:sepia(1) saturate(1.5);" autoplay></video>
+<button id="MediaStreamStartButton">Start</button> <button id="MediaStreamStopButton">Stop</button></p>
+<script>
+(function() {
+	navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
+	var stream;
+	var video = document.getElementById('MediaStreamVideo');
+	document.getElementById('MediaStreamStartButton').onclick = function() {
+		if (!navigator.getUserMedia) {
+			alert('Sorry, this isn\'t happening for your browser.');
+			return;
+		}
+		navigator.getUserMedia(
+			{video: true, audio: true}, 
+			function(localMediaStream) {
+				stream = localMediaStream;
+				if (video.mozSrcObject !== undefined) {
+					video.mozSrcObject = stream;
+				} else {
+					video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+				}
+				video.play();
+			},
+			function(e) {
+				alert('getUserMedia failed: Code ' + e.code);
+			}
+		);
+	}
+	document.getElementById('MediaStreamStopButton').onclick = function() {
+		if (stream) { stream.stop(); }
+	}
+})();
+</script>
+
+{% endblock %}
