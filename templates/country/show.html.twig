@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Country{% endblock %}
+
+{% block body %}
+    <h1>Country</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Code</th>
+                <td>{{ country.code }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ country.country }}</td>
+            </tr>
+            <tr>
+                <th>Long</th>
+                <td>{{ country.long }}</td>
+            </tr>
+            <tr>
+                <th>Flag</th>
+                <td>{{ country.flag }}</td>
+            </tr>
+            <tr>
+                <th>Sepa</th>
+                <td>{{ country.sepa ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Intracommunity</th>
+                <td>{{ country.intracommunity ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Phone_code</th>
+                <td>{{ country.phoneCode }}</td>
+            </tr>
+            <tr>
+                <th>_country</th>
+                <td>{{ country.country }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_country_index') }}">back to list</a>
+
+    <a href="{{ path('app_country_edit', {'id': country.code}) }}">edit</a>
+
+    {{ include('country/_delete_form.html.twig') }}
+{% endblock %}

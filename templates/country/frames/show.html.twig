@@ -1,0 +1,29 @@
+{% extends 'drawer.html.twig' %}
+
+{% block title %}Pays{% endblock %}
+
+{% block body %}
+<main class="grid grid-cols-[10rem_1fr] gap-2 grow content-start">
+  <div class="font-semibold">Code</div>
+  <div>{{ country.code }}</div>
+  <div class="font-semibold">Libellé</div>
+  <div>{{ country.country }}</div>
+  <div class="font-semibold">Forme longue</div>
+  <div>{{ country.long|default(country.country) }}</div>
+  <div class="font-semibold">Article</div>
+  <div>{{ country.tncc }}<span class="italic text-neutral-600 font-light">{{ country.country }}</span></div>
+  <div class="font-semibold">Charnière</div>
+  <div>{{ country.tncc.charniere }}<span class="italic text-neutral-600 font-light">{{ country.country }}</span></div>
+  <div class="font-semibold">Intra communautaire</div>
+  <div>{{ country.intracommunity ? '✓': 'Non' }}</div>
+  <div class="font-semibold">Sepa</div>
+  <div>{{ country.sepa ? '✓' : 'Non' }}</div>
+</main>
+{% endblock %}
+
+{% block footer %}
+<footer class="flex gap-4 justify-end" >
+  <a href="{{ path('admin_country_edit', {'id': country.code}) }}"
+    class="btn btn-primary">{{ 'button.edit'|trans }}</a>
+</footer>
+{% endblock %}

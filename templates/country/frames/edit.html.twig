@@ -1,0 +1,23 @@
+{% extends 'drawer.html.twig' %}
+{% set form_id = 'form-' ~ random() %}
+
+{% block title %}Pays{% endblock %}
+
+{% block body %}
+  {{ include('country/_form.html.twig', {'button_label': 'Update'}) }}
+{% endblock %}
+
+{% block footer %}
+<footer
+  class="flex gap-4 justify-end">
+  <button class="btn btn-primary" type="submit" form="{{ form_id }}">{{ 'button.save'|trans }}</button>
+  <a onclick="winboxManager.open({ url:` path('admin_country_delete_form', {'id': country.code}) `, title: `Pays`, modal: true })"
+  class="btn btn-danger">{{ 'button.delete'|trans }}</a>
+
+  <form method="post" action="{{ path('country_delete_dialog') }}">
+    <button class="btn btn-primary">go</button>
+    <button type="button">Open modal</button>
+  </form>
+
+</footer>
+{% endblock %}

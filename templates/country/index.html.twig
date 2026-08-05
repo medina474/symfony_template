@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Country index{% endblock %}
+
+{% block body %}
+    <h1>Country index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Country</th>
+                <th>Long</th>
+                <th>Flag</th>
+                <th>Sepa</th>
+                <th>Intracommunity</th>
+                <th>Phone_code</th>
+                <th>_country</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for country in countries %}
+            <tr>
+                <td>{{ country.code }}</td>
+                <td>{{ country.country }}</td>
+                <td>{{ country.long }}</td>
+                <td>{{ country.flag }}</td>
+                <td>{{ country.sepa ? 'Yes' : 'No' }}</td>
+                <td>{{ country.intracommunity ? 'Yes' : 'No' }}</td>
+                <td>{{ country.phoneCode }}</td>
+                <td>{{ country.country }}</td>
+                <td>
+                    <a href="{{ path('app_country_show', {'id': country.code}) }}">show</a>
+                    <a href="{{ path('app_country_edit', {'id': country.code}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_country_new') }}">Create new</a>
+{% endblock %}
