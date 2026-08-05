@@ -18,11 +18,11 @@ final class Version20260804135028 extends AbstractMigration
     {
         $dbName = $this->connection->getDatabase();
 
-        $this->addSql('create schema if not exists reporting;');
-        $this->addSql(sprintf('grant connect on database "%s" to reporting;', $dbName));
-        $this->addSql(sprintf('alter role reporting in database "%s" set search_path = reporting;', $dbName));
-        $this->addSql('grant usage on schema reporting to reporting;');
-        $this->addSql('alter default privileges in schema reporting grant select on tables to reporting;');
+        $this->addSql('create schema if not exists reporting');
+        $this->addSql(sprintf('grant connect on database "%s" to reporting', $dbName));
+        $this->addSql(sprintf('alter role reporting in database "%s" set search_path = reporting', $dbName));
+        $this->addSql('grant usage on schema reporting to reporting');
+        $this->addSql('alter default privileges in schema reporting grant select on tables to reporting');
 
         $this->addSql(<<<SQL
         create table "user" (
@@ -57,9 +57,7 @@ final class Version20260804135028 extends AbstractMigration
         $this->addSql('drop table "user"');
         $this->addSql('drop table messenger_messages');
 
-        $this->addSql('drop view reporting.audit');
-        $this->addSql('drop table audit');
         $this->addSql('drop table "user"');
-        $this->addSql('drop schema reporting cascade;');
+        $this->addSql('drop schema reporting cascade');
     }
 }
