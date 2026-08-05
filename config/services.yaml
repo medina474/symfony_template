@@ -24,3 +24,14 @@ services:
     App\Utility\CursorEncoder:
         arguments:
             $secret: '%kernel.secret%'
+
+    App\Notifier\JobFailureAdminNotifier:
+        arguments:
+            $adminEmail: '%env(ADMIN_EMAIL)%'
+            $adminPhone: '%env(ADMIN_PHONE)%'
+
+    Twig\Extra\Inky\InkyExtension:
+        tags: ['twig.extension']
+
+    Twig\Extra\CssInliner\CssInlinerExtension:
+        tags: ['twig.extension']

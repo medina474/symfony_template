@@ -1,0 +1,14 @@
+framework:
+    notifier:
+        texter_transports:
+            ntfy: '%env(NTFY_DSN)%'
+            freemobile: '%env(FREE_MOBILE_DSN)%'
+        channel_policy:
+            # use chat/slack, chat/telegram, sms/twilio or sms/nexmo
+            urgent: ['sms/ntfy']
+            high: ['email']
+            medium: ['email']
+            low: ['email']
+        admin_recipients:
+            - { email: admin@app.fr }
+        notification_on_failed_messages: true

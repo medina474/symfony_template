@@ -146,6 +146,15 @@
             ".editorconfig"
         ]
     },
+    "symfony/free-mobile-notifier": {
+        "version": "8.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.1",
+            "ref": "3bd91e5e874bd0b6174fa1459b7f2fd1a099114f"
+        }
+    },
     "symfony/mailer": {
         "version": "8.1",
         "recipe": {
@@ -202,6 +211,27 @@
         "files": [
             "config/packages/monolog.yaml"
         ]
+    },
+    "symfony/notifier": {
+        "version": "8.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "178877daf79d2dbd62129dd03612cb1a2cb407cc"
+        },
+        "files": [
+            "config/packages/notifier.yaml"
+        ]
+    },
+    "symfony/ntfy-notifier": {
+        "version": "8.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.4",
+            "ref": "0d5e496659d7361bb4e6648eb8332f8cf097533d"
+        }
     },
     "symfony/property-info": {
         "version": "8.1",

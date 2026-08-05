@@ -52,3 +52,15 @@ composer require \
 composer require \
 	symfony/uid \
 	symfony/serializer-pack
+	
+# Composants de notification
+
+# You cannot use "Symfony\Bridge\Twig\Mime\NotificationEmail" if the "CSS Inliner" and "Inky" Twig extensions are not available. 
+# Try running "composer require twig/cssinliner-extra twig/inky-extra".
+
+composer require \
+	symfony/notifier \
+	twig/cssinliner-extra \
+	twig/inky-extra \
+	symfony/ntfy-notifier \
+	symfony/free-mobile-notifier
