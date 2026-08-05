@@ -73,6 +73,7 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql:rw
       - ./postgresql/initdb:/docker-entrypoint-initdb.d
+      - ./postgresql/data:/data/app
 ###< doctrine/doctrine-bundle ###
 
   k6:

@@ -198,3 +198,9 @@ docker compose build --pull --no-cache
 ```shell
 docker compose -f compose.yaml -f compose.prod.yaml build --pull --no-cache
 ```
+
+## Tests
+
+Avant d'effectuer les tests avec phpUnit, lancer les deux tâches
+- Create database for test environment
+- Run migrations on test environment

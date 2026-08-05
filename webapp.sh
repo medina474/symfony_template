@@ -48,3 +48,7 @@ composer require \
 	symfony/doctrine-messenger \
 	symfony/mercure-bundle \
 	symfony/mailer
+
+composer require \
+	symfony/uid \
+	symfony/serializer-pack
