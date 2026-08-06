@@ -1,4 +1,6 @@
 import './stimulus_bootstrap.js';
+import { StreamActions } from "@hotwired/turbo";
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -7,4 +9,14 @@ import './stimulus_bootstrap.js';
  */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+StreamActions.show_dialog = function () {
+    const dialog = this.targetElements[0]
+
+    dialog.dataset.type = this.getAttribute('type') ?? 'info'
+
+    dialog.replaceChildren(this.templateContent.cloneNode(true))
+
+    if (dialog instanceof HTMLDialogElement && !dialog.open) {
+        dialog.showModal()
+    }
+}
