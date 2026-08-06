@@ -76,13 +76,19 @@ services:
       - ./postgresql/data:/data/app
 ###< doctrine/doctrine-bundle ###
 
+# Le profil empêche le service d'être créer dans la configuration par défaut.
   k6:
     image: grafana/k6:latest
     profiles:
       - bench
+    environment:
+      K6_PROMETHEUS_RW_SERVER_URL: http://victoriametrics:8428/api/v1/write
     volumes:
       - ./performance/k6:/scripts:ro
     working_dir: /scripts
+
+  gotenberg:
+    image: gotenberg/gotenberg:8
 
 volumes:
   caddy_data:
