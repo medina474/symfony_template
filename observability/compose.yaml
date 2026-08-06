@@ -51,6 +51,7 @@ services:
       - ./observability/grafana/dashboards:/var/lib/grafana/dashboards
       - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
 
+  # Mot de passe chiffré avec bcrypt. Attention le caractère $ doit être doublé !
   ntfy:
     image: binwiederhier/ntfy:v2.26
     restart: no
@@ -59,7 +60,7 @@ services:
       NTFY_BEHIND_PROXY: true
       NTFY_AUTH_FILE: /var/lib/ntfy/auth.db
       NTFY_AUTH_DEFAULT_ACCESS: deny-all
-      NTFY_AUTH_USERS: 'admin:$$2b$$10$$RYMAbCBhpnIfdHpR301jJelfcmoJ3YLfap3ZzJ8JSFfYfACjOx/.2:admin' # Must escape '$' as '$$'
+      NTFY_AUTH_USERS: 'admin:$$2y$$10$$guNukxQ4DA9AZVVY12cCyuYPXIfa2vdwANDXbkfmMzfLCUPxuxJcm:admin' # Must escape '$' as '$$'
       NTFY_ENABLE_LOGIN: true
       NTFY_REQUIRE_LOGIN: true
       NTFY_CACHE_FILE: /var/lib/ntfy/cache.db
