@@ -188,11 +188,56 @@ workers:
 
 * ***symfony/validator*** : Permet de valider les données à l'aide de règles déclaratives. Il est couramment utilisé pour vérifier les entités, les *DTO* et les données de formulaires.
 
+## Communication
+
+* ***symfony/messenger*** : Fournit un système de bus de messages pour découpler les traitements de l'application. Il permet d'exécuter des tâches de manière synchrone ou asynchrone via des files d'attente et des workers.
+
+Pour stocker les messages en file d'attente, il faut ajouter au moins un transport. C'est à dire une infrastructure capable de prendre en charge les messages et de les stocker temporairement, le temps qu'ils soient traités.
+Différents supports sont disponibles :
+
+- ***symfony/doctrine-messenger*** utilise la base de données du projet.
+- ***symfony/redis-messenger*** utilise un serveur Redis ou compatible.
+- ***symfony/amqp-messenger*** utilise un serveur comme RabbitMQ et le protocole AMQP.
+- ***symfony/amazon-sqs-messenger*** utilise l'infrastructure Amazon.
+
+Pour consommer les messages asynchrones, il faut exécuter la commande suivante :
+
+```shell
+bin/console messenger:consume async -vv
+```
+
+> [!WARNING]
+>
+> En production il convient de créer des services Docker supplémentaires pour exécuter la commande `consume` et traiter les messages.
+
+* ***symfony/mercure-bundle*** : Intègre le protocole Mercure à Symfony pour diffuser des mises à jour en temps réel vers les clients. Il permet de publier des événements et de mettre à jour automatiquement les interfaces sans rechargement de la page.
+
+* ***symfony/notifier*** : Fournit un système unifié pour envoyer des notifications via différents canaux (email, SMS, Slack, webhook, etc.). Il permet de centraliser la gestion des alertes applicatives et de les distribuer via plusieurs canaux  selon le type de notification ou le contexte d’exécution.
+
+* ***symfony/mailer*** : Fournit une *API* unifiée pour l'envoi d'emails. Il prend en charge de nombreux transports comme *SMTP*, *SendGrid*, *Mailgun* ou *Amazon SES*.
+
+## Composants de sécurité
+
+* ***symfony/security-bundle*** implémente le système d'authentification et d'autorisation de Symfony. Il permet de gérer les utilisateurs, les rôles, les permissions et les mécanismes de connexion.
+
+## Observabilité
+
+L’observabilité désigne l’ensemble des mécanismes permettant de comprendre le comportement d’une application en production à travers ses logs, ses métriques et ses traces. Le framework fournit une base solide pour la journalisation structurée, et s’intègre facilement avec des outils de traçage distribué (*OpenTelemetry*) et de monitoring (*Prometheus*, *Datadog*, *Grafana*).
+
+* ***symfony/monolog-bundle***: Fournit un système de journalisation. Il permet d’enregistrer et de router les logs de l’application vers différents supports (fichiers, services externes, bases de données) selon leur niveau de gravité et le contexte d’exécution.
+
+## Pages de démonstrations
+
+```shell
+bin/console make:controller DemoController
+```
+
 ## Construire l'image
 
 ```shell
 docker compose build --pull --no-cache
 ```
+
 ### Passer en production
 
 ```shell
@@ -204,3 +249,5 @@ docker compose -f compose.yaml -f compose.prod.yaml build --pull --no-cache
 Avant d'effectuer les tests avec phpUnit, lancer les deux tâches
 - Create database for test environment
 - Run migrations on test environment
+
+docker compose run --rm k6 -e K6_PROMETHEUS_RW_SERVER_URL=http://victoriametrics:8428/api/v1/write -o experimental-prometheus-rw run smoke.js

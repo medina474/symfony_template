@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="bg-stone text-stone-700
     selection:bg-primary/60 selection:text-white
-    dark:bg-stone-800 dark:text-stone-100">
+    dark:bg-stone-800 dark:text-stone-100"
+    lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -14,16 +15,27 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
 
-        {% set frankenphp_hot_reload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
-        {% if frankenphp_hot_reload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphp_hot_reload }}">
+        {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
+        {% if frankenphpHotReload %}
+        <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">
         <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
         <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
         {% endif %}
         <meta name="theme-color" content="#00674c" />
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="flex flex-col justify-center">
+        <div class="flex justify-center">
+            <div class="w-full max-w-lg">
+                <div class="text-center mb-4">
+                    <img class="inline" src="{{ asset('img/logo.webp') }}">
+                </div>
+
+                <h2 class="text-center text-2xl/9 font-semibold tracking-tight mb-8
+                    text-bottlegreen-700
+                    dark:text-white">{% block page_title %}Welcome!{% endblock %}</h2>
+            {% block body %}{% endblock %}
+            </div>
+        </div>
         <dialog id="alert-dialog"></dialog>
     </body>
 </html>
