@@ -65,6 +65,13 @@ services:
       NTFY_REQUIRE_LOGIN: true
       NTFY_CACHE_FILE: /var/lib/ntfy/cache.db
       NTFY_ATTACHMENT_CACHE_DIR: /var/lib/ntfy/attachments
+      NTFY_WEB_PUSH_EMAIL_ADDRESS: admin@app.fr
+      NTFY_WEB_PUSH_PUBLIC_KEY: BLXt4F0qnTZ14AHLClmywPwMI-UIG-0H2abfZr2CN4W0_Wm_K-Df68IMLtBfRudBcYLfg14GRTKDCSc_slPBmLg
+      NTFY_WEB_PUSH_PRIVATE_KEY: ${NTFY_WEB_PUSH_PRIVATE_KEY}
+      NTFY_WEB_PUSH_FILE: /var/lib/ntfy/webpush.db
+      # Recevoir une copie des notifications par email
+      NTFY_SMTP_SENDER_ADDR: mailer
+      NTFY_SMTP_SENDER_FROM: symfony@app.fr
     volumes:
       - ntfy:/var/lib/ntfy
     command: serve
