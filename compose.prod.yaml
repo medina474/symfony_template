@@ -10,6 +10,17 @@ services:
       APP_SECRET: ${APP_SECRET}
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}
+
+  messenger-worker:
+    image: ${IMAGES_PREFIX:-}app-php-prod
+    restart: unless-stopped
+    command: php bin/console messenger:consume async --time-limit=3600 --memory-limit=128M
+    depends_on:
+      - redis
+      - database
+    environment:
+      APP_ENV: prod
+
   pgbackup:
     image: prodrigestivill/postgres-backup-local
     user: postgres:postgres
