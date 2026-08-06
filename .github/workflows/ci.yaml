@@ -39,6 +39,13 @@ jobs:
             *.cache-from=type=gha,scope=${{github.ref}}
             *.cache-from=type=gha,scope=refs/heads/main
             *.cache-to=type=gha,scope=${{github.ref}},mode=max
+      - name: Create secrets
+        run: |
+          mkdir -p secrets
+          printf "%s" "${{ secrets.DATABASE_PASSWORD }}" > secrets/database_password
+          printf "%s" "${{ secrets.ROLE_BACKUP_PASSWORD }}" > secrets/role_backup_password
+          printf "%s" "${{ secrets.ROLE_GRAFANA_PASSWORD }}" > secrets/role_grafana_password
+          printf "%s" "${{ secrets.ADMIN_PASSWORD }}" > secrets/admin_password
       - name: Start services
         run: docker compose up --wait --no-build
       - name: Check HTTP reachability
@@ -49,17 +56,19 @@ jobs:
       - name: Check Mercure reachability
         run: curl -vI --insecure --fail-with-body https://localhost/.well-known/mercure?topic=test
       # Uncomment if Doctrine ORM is installed
-      # - name: Create test database
-      #   run: docker compose exec -T php bin/console -e test doctrine:database:create
+      - name: Create test database
+        run: docker compose exec -T php bin/console -e test doctrine:database:create
       # Uncomment if Doctrine Migrations is installed
-      # - name: Run migrations
-      #   run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
+      - name: Run migrations
+        run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       # Uncomment if PHPUnit is installed
-      # - name: Run PHPUnit
-      #   run: docker compose exec -T php bin/phpunit
+      - name: Run PHPUnit
+        run: docker compose exec -T php bin/phpunit
       # Uncomment if Doctrine ORM is installed
-      # - name: Doctrine Schema Validator
-      #   run: docker compose exec -T php bin/console -e test doctrine:schema:validate
+      - name: Doctrine Schema Validator
+        run: docker compose exec -T php bin/console -e test doctrine:schema:validate
+      - name: PhpStan
+        run: docker compose exec -T php vendor/bin/phpstan --memory-limit=256M
   lint:
     name: Lint
     runs-on: ubuntu-latest
