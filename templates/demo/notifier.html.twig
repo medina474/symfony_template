@@ -3,6 +3,28 @@
 {% block title %}Symfony Notifier{% endblock %}
 
 {% block body %}
-<p>Message envoyé. 
+<p>Message envoyé.
     <a href="https://ntfy.localhost/" target="_blank">Vérifier Ntfy</a>.</p>
+
+
+Mot de passe admin chiffré avec bcrypt. Doubler les caractère $
+
+Reglé le mot de passe et le channel dans le variable d'environnement (.env)
+
+S'abonner au channel Test
+
+Clés pour le webpush
+
+docker exec -it symfony_template-ntfy-1 sh
+
+ntfy webpush keys
+
+Lire le token de l'administrateur
+
+ntfy token list admin
+
+L'utiliser dans l'url de connexion. noter les : devant. Il n'est pas nécessaire de spécifier l'utilisateur comme avec un mot de passe classique
+
+NTFY_DSN=ntfy://:tk_xxxxxx@ntfy/Test?secureHttp=off
+
 {% endblock %}

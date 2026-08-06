@@ -4,5 +4,50 @@
 
 {% block body %}
 <p>Message envoyé</p>
+
+Executer la commande pour consommer les messages
 bin/console messenger:consume async -vv
+
+
+Etape 1 : Il faut envoyer un message. Représenté par une classe
+
+<pre>
+/**
+ * Démo Symfony Messenger
+ */
+  #[Route('/demo/messenger', name: 'demo_messenger', methods: ['POST'])]
+    public function messenger(
+      MessageBusInterface $bus,
+  ): Response
+  {
+      $bus->dispatch(new DemoMessage('Dans la communication, le plus compliqué n\'est ni le message, ni la technique, mais le récepteur.'));
+
+      return $this->redirectToRoute('demo_messenger_success');
+  }
+</pre>
+
+Le deuxième processus dépile le message et exécute l'action contenue dans le handler
+
+<pre>
+namespace App\MessageHandler;
+
+use App\Message\DemoMessage;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+#[AsMessageHandler]
+class DemoMessageHandler
+{
+    public function __construct(
+        private LoggerInterface $logger,
+    ) {
+    }
+
+    public function __invoke(DemoMessage $message): void
+    {
+        $this->logger->error($message->getContent());
+    }
+}
+</pre>
+
 {% endblock %}

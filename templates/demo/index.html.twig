@@ -77,7 +77,17 @@ Boite de dialogue
     <button class="btn btn-primary">Open modal</button>
   </form>
 
+<h3>Jobs</h3>
+<form method="get" action="{{ path('demo_job_logger') }}">
+    <button class="btn btn-primary">job Logger</button>
+</form>
+
+<form method="get" action="{{ path('demo_job_fake') }}">
+    <button class="btn btn-primary">job Fake</button>
+</form>
+
 144 x 144
+
 <h3>Notifier</h3>
 <form method="post" action="{{ path('demo_notifier') }}">
     <button class="btn btn-primary">Notification</button>
@@ -91,6 +101,20 @@ Boite de dialogue
 <button class="btn btn-success">Success</button>
 <button class="btn btn-warning">Warning</button>
 <button class="btn btn-danger">Danger</button>
+
+<a href="{{ path('page', {'path': 'javascript'}) }}">JavaScript</a>
+
+<a href="{{ path('app_country_index') }}">Liste des pays</a>
+
+## K6
+
+--rm 		Automatically remove the container when it exits
+
+<pre>
+docker compose run --rm k6 -o experimental-prometheus-rw run smoke.js
+</pre>
+
+<a href="//grafana.localhost"></a>
 
 Ntfy
 superMotdePasse

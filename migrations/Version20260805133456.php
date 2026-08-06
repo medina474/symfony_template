@@ -7,14 +7,11 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20260805133456 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'Async Messenger Mercure Test';
+        return 'Async Messenger Mercure Test (lyixx/async-messenger-mercure)';
     }
 
     public function up(Schema $schema): void
@@ -32,6 +29,6 @@ final class Version20260805133456 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE first_name_stat');
+        $this->addSql('drop table first_name_stat');
     }
 }

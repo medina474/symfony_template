@@ -33,6 +33,9 @@ use Symfony\Component\Uid\Uuid;
 
 final class DemoController extends AbstractController
 {
+    /**
+     * Page d'accueil des démos
+     */
     #[Route('/demo', name: 'demo')]
     public function index(): Response
     {
@@ -41,6 +44,8 @@ final class DemoController extends AbstractController
 
     /**
      * Session
+     * Stockage d'une valeur dans une variable de session.
+     * Redirection vers une autre route.
      */
     #[Route('/demo/session', name: 'demo_session', methods:['POST'])]
     #[IsCsrfTokenValid('demo_session', tokenKey: '_csrf_token')]
@@ -52,25 +57,34 @@ final class DemoController extends AbstractController
         $session = $request->getSession();
         $session->set('couleur', 'rouge');
 
-        $value = $cache->get('statistics', function (ItemInterface $item) {
-            $item->expiresAfter(3600);
-            return ['resultat' => 73];
-        });
-
         return $this->redirectToRoute('demo_session_success');
     }
 
+    /**
+     * Récupération de la variable de session.
+     * Lecture d'une valeur en cache. Si elle n'est pas présente, la fixer avec une temporisation de 15 secondes.
+     */
     #[Route('/demo/session_success', name: 'demo_session_success')]
     public function session_success(
         Request $request,
+        CacheInterface $cache,
         ): Response
     {
         $session = $request->getSession();
-        return $this->render('demo/session.html.twig', [ 'couleur' => $session->get('couleur')]);
+
+        $value = $cache->get('statistics', function (ItemInterface $item) {
+            $item->expiresAfter(3600);
+            sleep(15);
+            return ['resultat' => 73];
+        });
+
+        return $this->render('demo/session.html.twig', [ 'couleur' => $session->get('couleur'), 'value' => $value['resultat'] ]);
     }
 
     /**
      * Monolog
+     * Écrire des messages dans le journal des événments.
+     * La sortie est dirigée vers la console stderr, interceptée par le composant Vector qui envoie vers VictoriaLogs.
      */
     #[Route('/demo/logger', name: 'demo_logger', methods:['POST'])]
     #[IsCsrfTokenValid('demo_logger', tokenKey: '_csrf_token')]
@@ -88,6 +102,9 @@ final class DemoController extends AbstractController
         return $this->redirectToRoute('demo_logger_success');
     }
 
+    /**
+     * Page de résultat de l'appel. Redirection après POST (PRG), Post-Redirect-Get pour éviter les appels intempestifs sur rechargement de la page
+     */
     #[Route('/demo/logger_success', name: 'demo_logger_success')]
     public function logger_success(): Response
     {
@@ -108,7 +125,8 @@ final class DemoController extends AbstractController
     }
 
     /**
-     * Symfony Messenger
+     * Démo Symfony Messenger.
+     * Envoi d'un message sur le bus de communication. Dans notre cas Redis
      */
     #[Route('/demo/messenger', name: 'demo_messenger', methods: ['POST'])]
     public function messenger(
@@ -120,6 +138,9 @@ final class DemoController extends AbstractController
         return $this->redirectToRoute('demo_messenger_success');
     }
 
+    /**
+     * PRG pour la démo de Messenger
+     */
     #[Route('/demo/messenger/success', name: 'demo_messenger_success')]
     public function messenger_success(): Response
     {
@@ -152,6 +173,9 @@ final class DemoController extends AbstractController
         return $this->redirectToRoute('demo_mailer_success');
     }
 
+    /**
+     * PRG pour la démo de Mailer
+     */
     #[Route('/demo/mailer/success', name: 'demo_mailer_success')]
     public function mailer_success(): Response
     {
@@ -160,6 +184,9 @@ final class DemoController extends AbstractController
         ]);
     }
 
+    /**
+     * Démo pour le style des éléments de formulaire
+     */
     #[Route('/demo/form', name: 'demo_form')]
     public function form(): Response
     {
