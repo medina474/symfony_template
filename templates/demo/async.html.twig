@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% set active = "async-notif" %}
+
+{% set importId = app.request.query.get('importId') %}
+
+{% block title %}Upload a CSV (async){% endblock %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="prose">
+    <h2>Upload a CSV (async)</h2>
+    {{ form(form) }}
+
+    {% if importId %}
+        <div class="col-12" id="status">
+            {{ _self.status(0, 'The import is going to start') }}
+        </div>
+
+        <div {{ turbo_stream_listen('csv:' ~ importId) }}></div>
+    {% endif %}
+{% endblock %}
+
+{% block status %}
+    <turbo-stream action="update" target="status" method="morph" >
+        <template>
+            {{ _self.status(percent, catch_phrase) }}
+        </template>
+    </turbo-stream>
+{% endblock %}
+
+{% macro status(percent, catch_phrase ) %}
+    <h2>Progress</h2>
+
+    {% if percent < 25 %}
+        {% set bg = 'bg-danger' %}
+    {% elseif percent < 50 %}
+        {% set bg = 'bg-warning' %}
+    {% elseif percent < 75 %}
+        {% set bg = 'bg-info' %}
+    {% else %}
+        {% set bg = 'bg-success' %}
+    {% endif %}
+
+    <div class="progress" role="progressbar progress-bar-animated" aria-label="Success example" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar {{ bg }}" style="width: {{ percent }}%"></div>
+        <progress id="file" max="100" value="{{ percent }}">{{ percent }}%</progress>
+    </div>
+
+    <div>
+        {{ catch_phrase }}
+    </div>
+</div>
+{% endmacro %}
