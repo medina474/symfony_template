@@ -102,7 +102,7 @@ final class CountryController extends AbstractController
             //return $this->redirectToRoute('app_country_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        $template = $request->headers->has('Turbo-Frame') ? 'country/frame/new.html.twig' : 'country/new_dialog.html.twig';
+        $template = $request->headers->has('Turbo-Frame') ? 'country/drawer/new.html.twig' : 'country/new_dialog.html.twig';
 
         return $this->render($template, [
             'country' => $country,
@@ -116,7 +116,7 @@ final class CountryController extends AbstractController
         Country $country
     ): Response
     {
-        $template = $request->headers->has('Turbo-Frame') ? 'country/frame/show.html.twig' : 'country/show.html.twig';
+        $template = $request->headers->has('Turbo-Frame') ? 'country/drawer/show.html.twig' : 'country/show.html.twig';
 
         return $this->render($template, [
             'country' => $country,
@@ -151,7 +151,7 @@ final class CountryController extends AbstractController
             return $this->redirectToRoute('app_country_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        $template = $request->headers->has('Turbo-Frame') ? 'country/frame/edit.html.twig' : 'country/edit.html.twig';
+        $template = $request->headers->has('Turbo-Frame') ? 'country/drawer/edit.html.twig' : 'country/edit.html.twig';
 
         return $this->render($template, [
             'country' => $country,
