@@ -39,7 +39,7 @@
       			<th scope="col">Sepa</th>
             </tr>
         </thead>
-    {{ include('/country/_items_tbody.html.twig', {countries: countries, q: q}, with_context: false) }}
+    {{ include('/country/index/body.html.twig', {countries: countries, q: q}, with_context: false) }}
 </table>
 
 {{ include('components/pagination_wrapper.html.twig', {
