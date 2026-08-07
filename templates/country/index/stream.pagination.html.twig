@@ -1,11 +1,11 @@
 {% if action == 'replace' %}
-<turbo-stream action="replace" target="items">
+<turbo-stream action="replace" target="tbody">
   <template>
     {% include 'country/index/body.html.twig' %}
   </template>
 </turbo-stream>
 {% else %}
-<turbo-stream action="append" target="items">
+<turbo-stream action="append" target="tbody">
   <template>
     {% include 'country/index/rows.html.twig' %}
   </template>

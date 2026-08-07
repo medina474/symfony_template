@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     this.panelTarget.classList.add("translate-x-full");
-    window.addEventListener("offcanvas:close", () => this.close());
+    window.addEventListener("drawer:close", () => this.close());
   }
 
   open() {
@@ -18,7 +18,13 @@ export default class extends Controller {
   }
 
   loading() {
-    if (!this.hasFrameTarget) return
+
+    if (!this.hasFrameTarget) {
+        console.log("Il n'y a pas de target !")
+        return;
+    }
+
+    console.log(this.hasFrameTarget);
 
     this.frameTarget.innerHTML = `
       <div class="flex h-screen items-center justify-center p-6 text-center text-gray-500 dark:text-gray-300">
