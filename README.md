@@ -253,4 +253,10 @@ Avant d'effectuer les tests avec phpUnit, lancer les deux tâches
 docker compose run --rm k6 -e K6_PROMETHEUS_RW_SERVER_URL=http://victoriametrics:8428/api/v1/write -o experimental-prometheus-rw run smoke.js
 
 
+
+Créer les quatre fichiers password
+
+Récupérer le tocken de l'admin ntfy et le coller dans .env.local
+
+
 php bin/console debug:translation fr --only-missing
