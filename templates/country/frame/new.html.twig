@@ -1,0 +1,13 @@
+{% extends 'drawer.html.twig' %}
+{% set form_id = 'form-' ~ random() %}
+
+{% block title %}Nouveau pays{% endblock %}
+
+{% block header %}
+<h1>Ajouter un pays</h1>
+{% endblock %}
+
+{% block main %}
+  {{ include('country/_form.html.twig', {'button_label': 'Update'}) }}
+{% endblock %}
+

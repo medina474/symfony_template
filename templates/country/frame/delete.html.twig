@@ -1,0 +1,15 @@
+{% extends 'dialog/dialog.html.twig' %}
+
+{% block title %}Supprimer {{ country }}{% endblock %}
+
+{% block message %}
+<p>Voulez-vous vraiment supprimer le pays <span class="text-semibold">{{ country }}</span> ?
+Ce que vous allez faire est irréversible et ne peut pas être restauré.</p>
+{% endblock %}
+
+{% block action %}
+<form method="post" action="{{ path('app_country_delete', {'id': country.code}) }}">
+  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ country.code) }}">
+  <button class="">{{ 'button.delete'|trans }}</button>
+</form>
+{% endblock %}

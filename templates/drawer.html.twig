@@ -1,12 +1,12 @@
 <div
-    data-offcanvas-target="overlay"
-    data-action="click->offcanvas#close"
+    data-drawer-target="overlay"
+    data-action="click->drawer#close"
     class="fixed inset-0 z-990 bg-black/50 opacity-0
            pointer-events-none
            transition-opacity duration-300"
 ></div>
 <div
-    data-offcanvas-target="panel"
+    data-drawer-target="panel"
     class="fixed top-0 right-0 z-991
         h-screen overflow-y-auto
         w-2/5 translate-x-full
@@ -15,9 +15,9 @@
         dark:bg-gray-900
         "
   ><turbo-frame
-      id="offcanvas"
-      data-offcanvas-target="frame"
-      data-action="turbo:before-fetch-request->offcanvas#loading"
+      id="drawer"
+      data-drawer-target="frame"
+      data-action="turbo:before-fetch-request->drawer#loading"
     >
   </turbo-frame>
 </div>
