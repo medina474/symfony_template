@@ -1,0 +1,10 @@
+<turbo-stream action="{{ action }}" target="{{ target }}">
+  <template>
+    {{ include(entityName ~ '/index/row.html.twig', {
+        entityName: entityName,
+        (entityName): entity
+    }) }}
+  </template>
+</turbo-stream>
+
+<turbo-stream action="close_offcanvas"></turbo-stream>

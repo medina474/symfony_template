@@ -1,4 +1,3 @@
-{# row #}
 <tr id="country_{{ country.code }}">
   <td class="w-12"><a href="{{ path('app_country_show', {'id': country.code}) }}"
     onclick="winboxManager.open({ url:`{{ path('app_country_show', {'id': country.code}) }}`, title:`{{ country.country }}`}); return false;">{{ country.code }}</a></td>

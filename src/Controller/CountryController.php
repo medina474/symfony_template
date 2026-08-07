@@ -65,7 +65,7 @@ final class CountryController extends AbstractController
             $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
 
             return $this->render(
-                'country/index.stream.html.twig',
+                'country/index/stream.pagination.html.twig',
                 $params
             );
         }
