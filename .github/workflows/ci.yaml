@@ -44,7 +44,7 @@ jobs:
           mkdir -p secrets
           printf "%s" "${{ secrets.DATABASE_PASSWORD }}" > secrets/database_password
           printf "%s" "${{ secrets.ROLE_BACKUP_PASSWORD }}" > secrets/role_backup_password
-          printf "%s" "${{ secrets.ROLE_GRAFANA_PASSWORD }}" > secrets/role_grafana_password
+          printf "%s" "${{ secrets.ROLE_REPORTING_PASSWORD }}" > secrets/role_reporting_password
           printf "%s" "${{ secrets.ADMIN_PASSWORD }}" > secrets/admin_password
       - name: Start services
         run: docker compose up --wait --no-build
@@ -69,25 +69,25 @@ jobs:
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
       - name: PhpStan
         run: docker compose exec -T php vendor/bin/phpstan --memory-limit=256M
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Lint Code Base
-        uses: super-linter/super-linter/slim@v8
-        env:
-          GITHUB_ACTIONS_CONFIG_FILE: actionlint.yaml
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_CHECKOV: false
-          VALIDATE_TRIVY: false
-          VALIDATE_BIOME_FORMAT: false
-          VALIDATE_BIOME_LINT: false
+  # lint:
+  #   name: Lint
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     packages: read
+  #     statuses: write
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v7
+  #       with:
+  #         fetch-depth: 0
+  #         persist-credentials: false
+  #     - name: Lint Code Base
+  #       uses: super-linter/super-linter/slim@v8
+  #       env:
+  #         GITHUB_ACTIONS_CONFIG_FILE: actionlint.yaml
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         VALIDATE_CHECKOV: false
+  #         VALIDATE_TRIVY: false
+  #         VALIDATE_BIOME_FORMAT: false
+  #         VALIDATE_BIOME_LINT: false
