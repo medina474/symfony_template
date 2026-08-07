@@ -1,47 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Country index{% endblock %}
+{% block title %}Pays{% endblock %}
+
+{% block header %}
+<header class="sticky top-0 z-30 px-2 pb-2 bg-neutral-50 shrink-0">
+  <h1>Pays</h1>
+  <div class="gap-2 flex">
+    <form method="get"
+      data-controller="search"
+      data-search-delay-value="300"
+      class="w-full">
+      <input type="search" name="q"
+        value="{{ search ?? '' }}"
+        placeholder="Rechercher un pays"
+        class="form-control"
+        autocomplete="off"
+        data-search-target="input"
+        data-action="input->search#submit">
+    </form>
+    <div>
+      <button class="btn btn-primary"
+        onclick="winboxManager.open({ url:`{{ path('admin_country_new') }}`, title: `Pays`})">
+      {{ 'button.add'|trans }}
+      </button>
+    </div>
+  </div>
+</header>
+{% endblock %}
 
 {% block body %}
-    <h1>Country index</h1>
-
-    <table class="table">
+<table class="tableau">
         <thead>
             <tr>
-                <th>Code</th>
-                <th>Country</th>
-                <th>Long</th>
-                <th>Flag</th>
-                <th>Sepa</th>
-                <th>Intracommunity</th>
-                <th>Phone_code</th>
-                <th>_country</th>
-                <th>actions</th>
+                <th scope="col">Code</th>
+     	 		<th scope="col">Drapeau</th>
+      			<th scope="col">Pays</th>
+      			<th scope="col">Forme longue</th>
+      			<th scope="col">Sepa</th>
             </tr>
         </thead>
-        <tbody>
-        {% for country in countries %}
-            <tr>
-                <td>{{ country.code }}</td>
-                <td>{{ country.country }}</td>
-                <td>{{ country.long }}</td>
-                <td>{{ country.flag }}</td>
-                <td>{{ country.sepa ? 'Yes' : 'No' }}</td>
-                <td>{{ country.intracommunity ? 'Yes' : 'No' }}</td>
-                <td>{{ country.phoneCode }}</td>
-                <td>{{ country.country }}</td>
-                <td>
-                    <a href="{{ path('app_country_show', {'id': country.code}) }}">show</a>
-                    <a href="{{ path('app_country_edit', {'id': country.code}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {{ include('/country/_items_tbody.html.twig', {countries: countries, q: q}, with_context: false) }}
+</table>
 
-    <a href="{{ path('app_country_new') }}">Create new</a>
+{{ include('components/pagination_wrapper.html.twig', {
+  route: 'app_country_index',
+  nextCursor: nextCursor
+}) }}
 {% endblock %}

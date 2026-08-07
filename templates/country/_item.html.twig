@@ -1,0 +1,11 @@
+{# row #}
+<tr id="country_{{ country.code }}">
+  <td class="w-12"><a href="{{ path('app_country_show', {'id': country.code}) }}"
+    onclick="winboxManager.open({ url:`{{ path('app_country_show', {'id': country.code}) }}`, title:`{{ country.country }}`}); return false;">{{ country.code }}</a></td>
+  <td class="w-12 text-lg">{{ country.flag }}</td>
+  <td><a href="{{ path('app_country_show', {'id': country.code}) }}"
+    data-action="offcanvas#open"
+    data-turbo-frame="offcanvas">{{ country.country|highlight(q) }}</a></td>
+  <td>{{ country.long|highlight(q) }}</td>
+  <td>{{ country.sepa ? '?' }}</td>
+</tr>

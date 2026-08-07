@@ -1,0 +1,13 @@
+{# Paramètres :
+   - route      : nom de la route (ex: 'app_country_index')
+   - nextCursor : le curseur (tableau ou null)
+   - label      : texte du lien (optionnel, défaut: 'Charger plus')
+#}
+{% set url = path(route, { cursor: nextCursor }) %}
+<div id="pagination">
+  {% if nextCursor %}
+  <a href="{{ url }}" class="btn btn-primary" data-turbo-stream>
+    {{ label ?? 'Charger plus' }}
+  </a>
+  {% endif %}
+</div>
