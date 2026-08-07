@@ -24,8 +24,5 @@ indent_size = 2
 indent_size = unset
 indent_style = unset
 
-[**.css]
-indent_size = 2
-
 [secrets/**]
 insert_final_newline = false
