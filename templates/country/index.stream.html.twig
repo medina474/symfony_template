@@ -1,0 +1,22 @@
+{% if action == 'replace' %}
+<turbo-stream action="replace" target="items">
+  <template>
+    {% include 'country/_items_tbody.html.twig' %}
+  </template>
+</turbo-stream>
+{% else %}
+<turbo-stream action="append" target="items">
+  <template>
+    {% include 'country/_items.html.twig' %}
+  </template>
+</turbo-stream>
+{% endif %}
+
+<turbo-stream action="replace" target="pagination">
+  <template>
+    {{ include('components/pagination.html.twig', {
+      route: 'app_country_index',
+      nextCursor: nextCursor
+    }) }}
+  </template>
+</turbo-stream>

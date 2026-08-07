@@ -24,7 +24,7 @@
 
 @layer base {
   dialog {
-    @apply 
+    @apply
     m-auto
     shadow-lg;
   }
@@ -74,5 +74,55 @@
       hover:bg-red-800
       active:bg-red-900
       focus-visible:outline-red-700
+    }
+
+       /* Tableau */
+
+    .tableau {
+      @apply
+        min-w-full
+        border-collapse
+        block md:table;
+    }
+
+    .tableau>thead {
+      @apply
+        block md:table-header-group
+        sticky top-0 z-20
+        bg-stone-50
+        border-b border-stone-200;
+    }
+
+    .tableau>thead>tr {
+      @apply
+        block md:table-row
+    }
+
+    .tableau>thead>tr>th {
+      @apply
+        block md:table-cell
+        px-4 py-1
+        text-left font-medium
+        text-sm
+    }
+
+    .tableau>tbody>tr {
+        @apply
+          block md:table-row
+          border-b border-gray-100
+          md:border-none
+    }
+
+    .tableau>tbody>tr>td {
+      @apply
+        block md:table-cell
+        md:border-b border-gray-200
+        text-sm
+        px-4 py-1;
+    }
+
+    .tableau>tbody>tr {
+      @apply
+        bg-white;
     }
 }

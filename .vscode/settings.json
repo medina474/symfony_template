@@ -1,4 +1,13 @@
 {
     "files.autoSave": "afterDelay",
-    "window.autoDetectColorScheme": true
+    "window.autoDetectColorScheme": true,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "tailwindCSS.experimental.configFile": "assets/styles/app.css",
+    "editor.quickSuggestions": {
+        "other": "offWhenInlineCompletions",
+        "comments": "off",
+        "strings": "on"
+    }
 }
