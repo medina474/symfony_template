@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ app.request.locale }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Jardins de Cocagne{% endblock %}</title>
+  {% block stylesheets %}
+  {% endblock %}
+
+  {% block javascripts %}
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
+  {% endblock %}
+
+  {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
+  {% if frankenphpHotReload %}
+  <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">
+  <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
+  <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
+  {% endif %}
+  <meta name="theme-color" content="#00674c" />
+  <!-- admin -->
+</head>
+
+<body
+  data-controller="sidebar offcanvas"
+  data-action="keydown.esc@window->offcanvas#closeOnKeydown"
+  class="flex h-screen"
+>
+  {{ include('sidebar.html.twig') }}
+  <main id="page" class="flex-1 ml-60 transition-all duration-300 h-screen flex flex-col" data-sidebar-target="content">
+    {% block header %}{% endblock %}
+    <div data-controller="infinite-scroll"
+      class="flex-1 min-h-0 overflow-auto">
+    {% block body %}{% endblock %}
+    </div>
+  </main>
+  {{ include('drawer.html.twig') }}
+  <dialog id="alert-dialog">
+    <div id="alert-dialog-content"></div>
+  </dialog>
+</body>
+
+</html>
