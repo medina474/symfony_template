@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   open() {
-    this.loading()
     this.#toggle(true)
   }
 
@@ -17,10 +16,14 @@ export default class extends Controller {
     this.#toggle(false)
   }
 
-  loading() {
+  loading(evt) {
 
     if (!this.hasFrameTarget) {
         console.log("Il n'y a pas de target !")
+        return;
+    }
+
+    if (evt.target.id !== 'drawer') {
         return;
     }
 
