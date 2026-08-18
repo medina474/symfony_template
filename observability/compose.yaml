@@ -76,8 +76,16 @@ services:
       - ntfy:/var/lib/ntfy
     command: serve
 
+  redis-insight:
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"
+    volumes:
+      - redis-insight:/data
+
 volumes:
   victorialogs:
   victoriametrics:
   grafana:
   ntfy:
+  redis-insight:
