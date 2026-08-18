@@ -168,11 +168,11 @@ final class CountryController extends AbstractController
         Country $country,
         EntityManagerInterface $entityManager
     ): Response {
-            return $this->render('streams/dialog.html.twig', [
-                'content' => 'h',
-            ], new Response('', 200, [
-                'Content-Type' => 'text/vnd.turbo-stream.html'
-            ]));
+        return $this->render('admin/dialog.delete.html.twig', [
+            'content' => $country->getCountry(),
+        ], new Response('', 200, [
+            'Content-Type' => 'text/vnd.turbo-stream.html'
+        ]));
     }
 
     /**

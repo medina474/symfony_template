@@ -118,7 +118,7 @@ final class DemoController extends AbstractController
     #[Route('/demo/dialog', name: 'demo_dialog', methods: ['POST'])]
     public function dialog(): Response
     {
-        return $this->render('streams/demo.html.twig', [
+        return $this->render('demo/dialog.html.twig', [
                 'content' => 'demo',
         ], new Response('', 200, [
             'Content-Type' => 'text/vnd.turbo-stream.html'
