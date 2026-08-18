@@ -3,6 +3,7 @@
 {% block title %}Démo{% endblock %}
 
 {% block body %}
+
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
     Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
@@ -13,9 +14,21 @@
     Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.
     Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
 </p>
-<ul>
-  <li><a href='{{ path(name = 'demo_form') }}' data-turbo-prefetch='false'>Les formulaires<a></li>
-  <li><form method="post"
+
+
+<h2>Interface</h2>
+
+<a href='{{ path(name = 'demo_form') }}' data-turbo-prefetch='false'>Les formulaires<a>
+
+<h3>Boite de dialogue</h3>
+
+    <button type="button" command="show-modal" commandfor="my-dialog" class="btn btn-primary">Open modal</button>
+  <form method="post" action="{{ path('demo_dialog') }}">
+    <button class="btn btn-primary">Open modal</button>
+  </form>
+
+<h3>Session et cache applicatif</h3>
+<form method="post"
         action="{{ path('demo_session') }}"
         data-turbo="false">
         <input type="hidden"
@@ -25,9 +38,13 @@
             Session
         </button>
     </form>
-  </li>
-  <li><a href='{{ path(name = 'demo_async') }}' data-turbo-prefetch='false'>Async<a></li>
-  <li><form method="post"
+
+<h3>Messenger</h3>
+
+Démarrer la consommation des messages
+Message log ne se retrouve pas dans Victoria Metrics mais dans la console du 2e processus
+
+  <form method="post"
         action="{{ path('demo_messenger') }}"
         data-turbo="false">
         <input type="hidden"
@@ -37,8 +54,6 @@
             Symfony Messenger
         </button>
     </form>
-  </li>
-</ul>
 
 <h3>Journalisation</h3>
     <form method="post"
@@ -52,8 +67,10 @@
         </button>
     </form>
 
- <ul>
-  <li>
+
+
+
+<h3>Mail</h3>
     <form method="post"
         action="{{ path('demo_mailer') }}"
         data-turbo="false">
@@ -64,23 +81,24 @@
             Symfony Mailer
         </button>
     </form>
-  </li>
-</ul>
 
+<h3>Boîte de dialogue</h3>
 <dialog id="my-dialog" class="m-auto">
   <p>This dialog was opened using an invoker command.</p>
   <button commandfor="my-dialog" command="close">Close</button>
 </dialog>
 
-<button type="button" command="show-modal" commandfor="my-dialog" class="btn btn-primary">Open modal</button>
 
-Boite de dialogue
 
-  <form method="post" action="{{ path('demo_dialog') }}">
-    <button class="btn btn-primary">Open modal</button>
-  </form>
+
+
+<h3>Notifier</h3>
+<form method="post" action="{{ path('demo_notifier') }}">
+    <button class="btn btn-primary">Notification</button>
+</form>
 
 <h3>Jobs</h3>
+
 <form method="get" action="{{ path('demo_job_logger') }}">
     <button class="btn btn-primary">job Logger</button>
 </form>
@@ -89,12 +107,11 @@ Boite de dialogue
     <button class="btn btn-primary">job Fake</button>
 </form>
 
+<h3>Travaux asynchrones avec Messenger et Mercure</h3>
+
+<a href='{{ path(name = 'demo_async') }}' data-turbo-prefetch='false'>Async<a>
 
 
-<h3>Notifier</h3>
-<form method="post" action="{{ path('demo_notifier') }}">
-    <button class="btn btn-primary">Notification</button>
-</form>
 
 <h3>Boutons</h3>
 
