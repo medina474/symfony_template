@@ -1,0 +1,10 @@
+action:
+    yes: 'Evet'
+    no: 'Hayır'
+    edit: "Düzenle"
+    add: "Ekle"
+    delete: "Sil"
+    save: "Kaydet"
+    cancel: "İptal"
+    open: "Aç"
+    close: "Kapat"

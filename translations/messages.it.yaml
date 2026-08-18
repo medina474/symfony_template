@@ -1,0 +1,10 @@
+action:
+    yes: "Sì"
+    no: "No"
+    edit: "Modifica"
+    add: "Aggiungi"
+    delete: "Elimina"
+    save: "Salva"
+    cancel: "Annulla"
+    open: "Apri"
+    close: "Chiudi"

@@ -1,0 +1,10 @@
+action:
+    yes: 'Kyllä'
+    no: 'Ei'
+    edit: "Muokkaa"
+    add: "Lisää"
+    delete: "Poista"
+    save: "Tallenna"
+    cancel: "Peruuta"
+    open: "Avaa"
+    close: "Sulje"

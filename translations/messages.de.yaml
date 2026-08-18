@@ -1,0 +1,5 @@
+action:
+    yes: "Ja"
+    no: "Nein"
+    edit: "Bearbeiten"
+    save: "Speichern"

@@ -1,0 +1,10 @@
+action:
+    yes: 'Ja'
+    no: 'Nej'
+    edit: "Redigera"
+    add: "Lägg till"
+    delete: "Ta bort"
+    save: "Spara"
+    cancel: "Avbryt"
+    open: "Öppna"
+    close: "Stäng"

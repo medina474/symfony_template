@@ -1,0 +1,10 @@
+action:
+    yes: 'Da'
+    no: 'Nu'
+    edit: "Modifică"
+    add: "Adaugă"
+    delete: "Șterge"
+    save: "Salvează"
+    cancel: "Anulează"
+    open: "Deschide"
+    close: "Închide"

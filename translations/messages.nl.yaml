@@ -1,0 +1,10 @@
+action:
+    yes: "Ja"
+    no: "Nee"
+    edit: "Bewerken"
+    add: "Toevoegen"
+    delete: "Verwijderen"
+    save: "Opslaan"
+    cancel: "Annuleren"
+    open: "Openen"
+    close: "Sluiten"
