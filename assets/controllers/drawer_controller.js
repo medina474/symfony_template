@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["frame", "panel", "overlay"]
+  static targets = ["overlay", "panel", "frame"]
 
   connect() {
     this.panelTarget.classList.add("translate-x-full");
@@ -23,8 +23,6 @@ export default class extends Controller {
         console.log("Il n'y a pas de target !")
         return;
     }
-
-    console.log(this.hasFrameTarget);
 
     this.frameTarget.innerHTML = `
       <div class="flex h-screen items-center justify-center p-6 text-center text-gray-500 dark:text-gray-300">

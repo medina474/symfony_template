@@ -1,0 +1,16 @@
+<turbo-frame id="drawer" data-turbo-action="advance">
+  <div class="flex flex-col h-screen">
+    <div class="flex items-center justify-between p-4">
+      <h2 class="m-0">{% block title %}{% endblock %}</h2>
+      <button
+        class="cursor-pointer"
+        data-action="click->offcanvas#close">✕</button>
+    </div>
+    <div class="flex-1 px-4">
+      {% block main %}{% endblock %}
+    </div>
+    <div class="flex gap-2 p-4">
+    {% block footer %}{% endblock %}
+    </div>
+  </div>
+</turbo-frame>
