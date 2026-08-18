@@ -42,7 +42,7 @@
     {{ include('/country/index/body.html.twig', {countries: countries, q: q}, with_context: false) }}
 </table>
 
-{{ include('components/pagination_wrapper.html.twig', {
+{{ include('admin/pagination_sentinel.html.twig', {
   route: 'app_country_index',
   nextCursor: nextCursor
 }) }}

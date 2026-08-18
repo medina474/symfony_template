@@ -1,4 +1,4 @@
-{% extends 'components/drawer.html.twig' %}
+{% extends 'admin/frame/drawer.html.twig' %}
 
 {% block title %}Pays{% endblock %}
 
@@ -24,6 +24,7 @@
 {% block footer %}
 <footer class="flex gap-4 justify-end" >
   <a href="{{ path('app_country_edit', {'id': country.code}) }}"
-    class="btn btn-primary">{{ 'button.edit'|trans }}</a>
+    class="btn btn-primary"
+    data-turbo-prefetch="false">{{ 'button.edit'|trans }}</a>
 </footer>
 {% endblock %}

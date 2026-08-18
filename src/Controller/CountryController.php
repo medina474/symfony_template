@@ -159,6 +159,9 @@ final class CountryController extends AbstractController
         ]);
     }
 
+    /**
+     * 
+     */
     #[Route('/{id}/delete/dialog', name: 'app_country_delete_dialog', methods: ['POST'])]
     public function delete_dialog(
         Request $request,
@@ -172,6 +175,9 @@ final class CountryController extends AbstractController
             ]));
     }
 
+    /**
+     * Delete
+     */
     #[Route('/{id}/delete', name: 'app_country_delete', methods: ['POST'])]
     public function delete(
         Request $request,
