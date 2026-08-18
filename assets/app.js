@@ -10,6 +10,14 @@ import { StreamActions } from "@hotwired/turbo";
 import './styles/app.css';
 
 /**
+ * <turbo-stream action="close_drawer">
+ * forward de l'action vers le contrôleur Stimulus
+ */
+StreamActions.close_drawer = function () {
+    window.dispatchEvent(new CustomEvent("drawer:close"));
+};
+
+/**
  * <turbo-stream action="show_dialog" target="
  */
 StreamActions.show_dialog = function () {

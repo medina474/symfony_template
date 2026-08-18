@@ -5,6 +5,7 @@ export default class extends Controller {
 
   connect() {
     this.panelTarget.classList.add("translate-x-full");
+    // Appel à l'aide d'un turbo stream action, qui redirige l'action ici app.js
     window.addEventListener("drawer:close", () => this.close());
   }
 

@@ -13,16 +13,7 @@
   <button class="btn btn-primary" type="submit" form="{{ form_id }}" >{{ 'action.save'|trans }}</button>
 
     <form method="post" action="{{ path('app_country_delete_dialog', {'id': country.code}) }}">
-        <button class="btn btn-primary">{{ 'action.delete'|trans }}</button>
+        <button class="btn btn-danger">{{ 'action.delete'|trans }}</button>
     </form>
-
-  <a onclick="winboxManager.open({ url:` path('app_country_delete_form', {'id': country.code}) `, title: `Pays`, modal: true })"
-  class="btn btn-danger">{{ 'action.delete'|trans }}</a>
-
-  <form method="post" action="{{ path('app_country_delete_dialog', {'id': country.code}) }}">
-    <button class="btn btn-primary" >go</button>
-    <button type="button" >Open modal</button>
-  </form>
-
 </footer>
 {% endblock %}
