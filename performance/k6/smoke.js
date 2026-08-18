@@ -4,8 +4,8 @@ import { check, sleep } from 'k6';
 const BASE_URL = __ENV.BASE_URL ?? 'http://php';
 
 export const options = {
-    vus: 30,
-    duration: '30s',
+    vus: 50,
+    duration: '60s',
 
     thresholds: {
         http_req_failed: ['rate<0.01'],

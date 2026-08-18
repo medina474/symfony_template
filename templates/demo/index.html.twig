@@ -15,7 +15,6 @@
 </p>
 <ul>
   <li><a href='{{ path(name = 'demo_form') }}' data-turbo-prefetch='false'>Les formulaires<a></li>
-  <li><a href='{{ path(name = 'demo_async') }}' data-turbo-prefetch='false'>Async<a></li>
   <li><form method="post"
         action="{{ path('demo_session') }}"
         data-turbo="false">
@@ -27,6 +26,7 @@
         </button>
     </form>
   </li>
+  <li><a href='{{ path(name = 'demo_async') }}' data-turbo-prefetch='false'>Async<a></li>
   <li><form method="post"
         action="{{ path('demo_messenger') }}"
         data-turbo="false">
@@ -38,7 +38,9 @@
         </button>
     </form>
   </li>
-  <li>
+</ul>
+
+<h3>Journalisation</h3>
     <form method="post"
         action="{{ path('demo_logger') }}"
         data-turbo="false">
@@ -49,7 +51,8 @@
             Symfony Logger
         </button>
     </form>
-  </li>
+
+ <ul>
   <li>
     <form method="post"
         action="{{ path('demo_mailer') }}"
@@ -86,7 +89,7 @@ Boite de dialogue
     <button class="btn btn-primary">job Fake</button>
 </form>
 
-144 x 144
+
 
 <h3>Notifier</h3>
 <form method="post" action="{{ path('demo_notifier') }}">

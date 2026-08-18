@@ -92,9 +92,10 @@ final class DemoController extends AbstractController
         LoggerInterface $logger,
     ): Response
     {
-        $logger->error('Message d\'erreur');
-        $logger->warning('Message d\'avertissement');
+        $logger->debug('Message de débogage');
         $logger->info('Message d\'information');
+        $logger->warning('Message d\'avertissement');
+        $logger->error('Message d\'erreur');
         $logger->critical('Message critique', [
             'cause' => 'inconnue'
         ]);
