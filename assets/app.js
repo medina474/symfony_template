@@ -9,9 +9,13 @@ import { StreamActions } from "@hotwired/turbo";
  */
 import './styles/app.css';
 
+/**
+ * <turbo-stream action="show_dialog" target="
+ */
 StreamActions.show_dialog = function () {
     const dialog = this.targetElements[0]
 
+    // Recopier l'attribut type sur le conteneur parent
     dialog.dataset.type = this.getAttribute('type') ?? 'info'
 
     dialog.replaceChildren(this.templateContent.cloneNode(true))

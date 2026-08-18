@@ -15,6 +15,11 @@
     Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
 </p>
 
+<h2>Tests unitaires</h2>
+
+Créer la base de données de Tests
+Exécuter les migrations
+Lancer les tests
 
 <h2>Interface</h2>
 
@@ -23,9 +28,10 @@
 <h3>Boite de dialogue</h3>
 
     <button type="button" command="show-modal" commandfor="my-dialog" class="btn btn-primary">Open modal</button>
-  <form method="post" action="{{ path('demo_dialog') }}">
-    <button class="btn btn-primary">Open modal</button>
-  </form>
+
+    <form method="post" action="{{ path('demo_dialog') }}">
+        <button class="btn btn-primary">Ouvrir la boîte de dialogue</button>
+    </form>
 
 <h3>Session et cache applicatif</h3>
 <form method="post"

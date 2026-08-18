@@ -160,7 +160,7 @@ final class CountryController extends AbstractController
     }
 
     /**
-     * 
+     *
      */
     #[Route('/{id}/delete/dialog', name: 'app_country_delete_dialog', methods: ['POST'])]
     public function delete_dialog(
