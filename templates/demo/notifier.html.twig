@@ -7,6 +7,12 @@
     <a href="https://ntfy.localhost/" target="_blank">Vérifier Ntfy</a>.</p>
 
 
+{% for message in app.flashes('notification') %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+{% endfor %}
+
 Mot de passe admin chiffré avec bcrypt. Doubler les caractère $
 
 Reglé le mot de passe et le channel dans le variable d'environnement (.env)

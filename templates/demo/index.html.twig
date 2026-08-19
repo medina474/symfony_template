@@ -98,10 +98,27 @@ Message log ne se retrouve pas dans Victoria Metrics mais dans la console du 2e 
 
 
 
-<h3>Notifier</h3>
-<form method="post" action="{{ path('demo_notifier') }}">
-    <button class="btn btn-primary">Notification</button>
+<h3>Notifications</h3>
+
+<form method="post" action="{{ path('demo_notifier_urgent') }}">
+    <button class="btn btn-danger">Envoyer une notification Urgente</button>
 </form>
+
+<form method="post" action="{{ path('demo_notifier') }}">
+    <button class="btn btn-primary">Envoyer une notification Importante</button>
+</form>
+
+<form method="post" action="{{ path('demo_notifier_medium') }}">
+    <button class="btn btn-primary">Envoyer une notification Moyenne</button>
+</form>
+
+<form method="post" action="{{ path('demo_notifier_low') }}">
+    <button class="btn btn-primary">Envoyer une notification Basse</button>
+</form>
+
+<pre>
+curl -d "Bonjour" --insecure https://:token@ntfy.localhost/Symfony
+</pre>
 
 <h3>Jobs</h3>
 

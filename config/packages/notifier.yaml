@@ -5,10 +5,10 @@ framework:
             freemobile: '%env(FREE_MOBILE_DSN)%'
         channel_policy:
             # use chat/slack, chat/telegram, sms/twilio or sms/nexmo
-            urgent: ['sms/ntfy']
-            high: ['email']
+            urgent: ['email', 'push', 'sms']
+            high: ['email', 'push']
             medium: ['email']
-            low: ['email']
+            low: ['browser']
         admin_recipients:
             - { email: admin@app.fr }
         notification_on_failed_messages: true

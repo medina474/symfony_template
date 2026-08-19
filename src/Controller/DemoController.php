@@ -226,20 +226,82 @@ final class DemoController extends AbstractController
         ));
     }
 
+    /*
     #[Route('/demo/notifier', name: 'demo_notifier', methods: ['POST'])]
     public function notifier(
         TexterInterface $texter
     ):Response {
 
         $message = new PushMessage(
-            '3e test',
-            'Contenu'
+            'Message push',
+            'Contenu du message'
         );
 
         $texter->send($message);
 
         return $this->redirectToRoute('demo_notifier_success');
     }
+*/
+
+#[Route('/demo/notifier', name: 'demo_notifier', methods: ['POST'])]
+public function notifier(
+    NotifierInterface $notifier,
+): Response {
+    $notification = new Notification('Message important');
+
+    $notification
+        ->content('Ce message est reçu par email et par push (ntfy).')
+        ->importance(Notification::IMPORTANCE_HIGH);
+
+    $notifier->send($notification, new Recipient('admin@app.fr'));
+
+    return $this->redirectToRoute('demo_notifier_success');
+}
+
+#[Route('/demo/notifier/urgent', name: 'demo_notifier_urgent', methods: ['POST'])]
+public function notifierUrgent(
+    NotifierInterface $notifier,
+): Response {
+    $notification = new Notification('Message urgent');
+
+    $notification
+        ->content('Contenu du message')
+        ->importance(Notification::IMPORTANCE_URGENT);
+
+    $notifier->send($notification, new Recipient('admin@app.fr', '0630129767'));
+
+    return $this->redirectToRoute('demo_notifier_success');
+}
+
+#[Route('/demo/notifier/medium', name: 'demo_notifier_medium', methods: ['POST'])]
+public function notifierMedium(
+    NotifierInterface $notifier,
+): Response {
+    $notification = new Notification('Message priorité moyenne');
+
+    $notification
+        ->content('Ce message est reçu uniquement par email.')
+        ->importance(Notification::IMPORTANCE_MEDIUM);
+
+    $notifier->send($notification, new Recipient('admin@app.fr'));
+
+    return $this->redirectToRoute('demo_notifier_success');
+}
+
+#[Route('/demo/notifier/low', name: 'demo_notifier_low', methods: ['POST'])]
+public function notifierLow(
+    NotifierInterface $notifier,
+): Response {
+    $notification = new Notification('Message priorité basse');
+
+    $notification
+        ->content('Contenu du message')
+        ->importance(Notification::IMPORTANCE_LOW);
+
+    $notifier->send($notification, new Recipient('admin@app.fr'));
+
+    return $this->redirectToRoute('demo_notifier_success');
+}
 
     #[Route('/demo/notifier/success', name: 'demo_notifier_success')]
     public function notifier_success(): Response
