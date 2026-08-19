@@ -27,7 +27,7 @@
   data-action="keydown.esc@window->drawer#closeOnKeydown"
   class="flex h-screen"
 >
-  {{ include('admin/sidebar.html.twig') }}
+  {{ include('admin/_partials/sidebar.html.twig') }}
   <main id="page" class="flex-1 ml-60 transition-all duration-300 h-screen flex flex-col" data-sidebar-target="content">
     {% block header %}{% endblock %}
     <div data-controller="infinite-scroll"
@@ -35,8 +35,8 @@
     {% block body %}{% endblock %}
     </div>
   </main>
-  {{ include('admin/drawer.html.twig') }}
-  {{ include('admin/dialog.html.twig') }}
+  {{ include('admin/_partials/drawer.html.twig') }}
+  {{ include('admin/_partials/dialog.html.twig') }}
 </body>
 
 </html>
