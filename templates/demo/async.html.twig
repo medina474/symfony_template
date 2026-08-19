@@ -22,7 +22,7 @@
             {{ _self.status(0, 'The import is going to start') }}
         </div>
 
-        <div {{ turbo_stream_listen('csv:' ~ importId) }}></div>
+        <twig:Turbo:Stream:From topics="{{ 'csv:' ~ importId }}" />
     {% endif %}
 {% endblock %}
 

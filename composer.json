@@ -41,6 +41,7 @@
         "symfony/uid": "8.1.*",
         "symfony/ux-icons": "^3.4",
         "symfony/ux-turbo": "*",
+        "symfony/ux-twig-component": "*",
         "symfony/validator": "8.1.*",
         "symfony/yaml": "8.1.*",
         "symfonycasts/tailwind-bundle": "*",
