@@ -13,6 +13,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -261,14 +262,14 @@ public function notifier(
 #[Route('/demo/notifier/urgent', name: 'demo_notifier_urgent', methods: ['POST'])]
 public function notifierUrgent(
     NotifierInterface $notifier,
+    #[Autowire('%env(ADMIN_EMAIL)%')] string $adminEmail,
+    #[Autowire('%env(ADMIN_PHONE)%')] string $adminPhone,
 ): Response {
-    $notification = new Notification('Message urgent');
-
-    $notification
+    $notification = (new Notification('Message urgent'))
         ->content('Contenu du message')
         ->importance(Notification::IMPORTANCE_URGENT);
 
-    $notifier->send($notification, new Recipient('admin@app.fr', '0699887700'));
+    $notifier->send($notification, new Recipient($adminEmail, $adminPhone));
 
     return $this->redirectToRoute('demo_notifier_success');
 }
