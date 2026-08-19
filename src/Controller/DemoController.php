@@ -268,7 +268,7 @@ public function notifierUrgent(
         ->content('Contenu du message')
         ->importance(Notification::IMPORTANCE_URGENT);
 
-    $notifier->send($notification, new Recipient('admin@app.fr', '0630129767'));
+    $notifier->send($notification, new Recipient('admin@app.fr', '0699887700'));
 
     return $this->redirectToRoute('demo_notifier_success');
 }
