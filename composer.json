@@ -25,7 +25,7 @@
         "symfony/framework-bundle": "8.1.*",
         "symfony/free-mobile-notifier": "8.1.*",
         "symfony/mailer": "8.1.*",
-        "symfony/mercure-bundle": "^0.4.2",
+        "symfony/mercure-bundle": "^0.5.0",
         "symfony/monolog-bundle": "^4.0",
         "symfony/notifier": "8.1.*",
         "symfony/ntfy-notifier": "8.1.*",
